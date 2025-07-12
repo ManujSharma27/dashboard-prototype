@@ -42,79 +42,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IITR Mission Control - Strategic Excellence Dashboard</title>
+    <title>IITR Mission Control</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js" onerror="this.src='/d3.v7.min.js';"></script>
 </head>
 <body>
     <div class="intro-animation">
-        <h1 class="intro-text">Mission Control: IITR Ascends</h1>
+        <h1 class="intro-text">IITR Ascends</h1>
     </div>
-    <div class="cosmic-glow"></div>
     <div class="header">
-        <div class="logo-section">
-            <div class="logo">IITR</div>
-            <div class="mission-title">
-                <h1>Mission Control</h1>
-                <span class="mission-subtitle">Strategic Excellence Dashboard</span>
-            </div>
-        </div>
-        <div class="mission-status">
-            <div class="status-indicator">
-                <span class="status-dot"></span> Live
-            </div>
-            <span class="mission-progress">90% Complete</span>
-        </div>
+        <h1>Mission Control</h1>
     </div>
     <div class="ranking-ticker">
         <div class="ticker-track">
             <span class="ticker-item"><span class="ticker-label ticker-qs">QS</span> #339</span>
-            <span class="ticker-item"><span class="ticker-label ticker-nirf">NIRF</span> #8</span>
-            <span class="ticker-item"><span class="ticker-label ticker-it">India Today</span> #5</span>
         </div>
     </div>
-    <div class="nav-tabs">
-        <button class="nav-tab active">Overview</button>
-        <button class="nav-tab">Collaboration</button>
-        <button class="nav-tab">Activity</button>
-        <button class="nav-tab">Briefing</button>
-    </div>
-    <div class="main-content">
-        <div class="dashboard-grid">
-            <div class="ranking-card" data-rank-type="qs">
-                <div class="ranking-header">
-                    <span class="ranking-title">QS World Ranking</span>
-                    <span class="ranking-badge badge-qs">Global</span>
-                </div>
-                <div class="ranking-main">
-                    <span class="ranking-number">339</span>
-                </div>
-                <div class="ranking-target">Target: #220</div>
-                <div class="ranking-progress"><div class="progress-fill fill-qs" style="width: 55%;"></div></div>
-            </div>
-            <div class="collaboration-container">
-                <div class="collab-header">
-                    <span class="collab-title">Collaboration Network</span>
-                    <div class="collab-stats">
-                        <div class="collab-stat">
-                            <span class="stat-value">18</span>
-                            <span class="stat-label">Active Projects</span>
-                        </div>
-                        <div class="collab-stat">
-                            <span class="stat-value">60</span>
-                            <span class="stat-label">Collaborators</span>
-                        </div>
-                    </div>
-                </div>
-                <div id="networkCanvas"></div>
-            </div>
-        </div>
-    </div>
-    <div class="action-bar">
-        <button class="action-item">Launch Initiative</button>
-        <button class="action-item secondary">View Report</button>
-    </div>
+    <div id="networkCanvas"></div>
     <script src="/script.js" defer></script>
 </body>
 </html>
