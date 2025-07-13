@@ -5,18 +5,36 @@ document.addEventListener('DOMContentLoaded', () => {
             loading.style.opacity = '0';
             setTimeout(() => {
                 loading.style.display = 'none';
-                document.querySelector('header').style.display = 'block';
-                document.querySelector('nav').style.display = 'block';
-                document.querySelector('main').style.display = 'block';
-                document.querySelector('footer').style.display = 'block';
-                ['header', 'nav', 'main', 'footer'].forEach(id => {
-                    const el = document.querySelector(id);
-                    el.style.opacity = '0';
-                    setTimeout(() => el.style.transition = 'opacity 0.6s ease', 10);
-                    setTimeout(() => el.style.opacity = '1', 20);
-                });
-            }, 600);
+                document.querySelector('.dashboard-container').style.opacity = '1';
+            }, 500);
         }, 2000);
+    }
+
+    const sidebar = document.querySelector('.sidebar');
+    const contentSections = document.querySelectorAll('.content-section');
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            contentSections.forEach(section => {
+                section.style.display = 'none';
+                if (section.id === targetId) {
+                    section.style.display = 'block';
+                }
+            });
+            if (window.innerWidth <= 768) {
+                sidebar.classList.remove('active');
+            }
+        });
+    });
+
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('mobile-menu');
+        const toggleBtn = document.createElement('button');
+        toggleBtn.textContent = '☰';
+        toggleBtn.className = 'menu-toggle';
+        document.body.prepend(toggleBtn);
+        toggleBtn.addEventListener('click', () => sidebar.classList.toggle('active'));
     }
 
     const qsChart = new Chart(document.getElementById('qs-chart'), {
@@ -28,20 +46,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [360, 350, 340, 339, 335],
                 borderColor: '#e57373',
                 fill: false,
-                tension: 0.3,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                borderWidth: 3,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#e57373'
+                tension: 0.2,
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0', font: { size: 12 } } } },
-            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 14 } } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
@@ -54,20 +68,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [9, 8, 7, 7, 6],
                 borderColor: '#e57373',
                 fill: false,
-                tension: 0.3,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                borderWidth: 3,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#e57373'
+                tension: 0.2,
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0', font: { size: 12 } } } },
-            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 14 } } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
@@ -80,50 +90,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 data: [8, 7, 7, 7, 6],
                 borderColor: '#e57373',
                 fill: false,
-                tension: 0.3,
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 8,
-                borderWidth: 3,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#e57373'
+                tension: 0.2,
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0', font: { size: 12 } } } },
-            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 14 } } } }
-        }
-    });
-
-    const compareChart = new Chart(document.getElementById('compare-chart'), {
-        type: 'bar',
-        data: {
-            labels: ['QS', 'NIRF', 'India'],
-            datasets: [{
-                label: 'Current',
-                data: [339, 7, 7],
-                backgroundColor: 'rgba(229, 115, 115, 0.9)',
-                borderColor: '#fff',
-                borderWidth: 2,
-                borderRadius: 10,
-                barThickness: 20
-            }, {
-                label: 'Target',
-                data: [220, 3, 4],
-                backgroundColor: 'rgba(129, 199, 132, 0.9)',
-                borderColor: '#fff',
-                borderWidth: 2,
-                borderRadius: 10,
-                barThickness: 20
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0', font: { size: 12 } } } },
-            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 14 } } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
@@ -133,4 +109,61 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'nirf-rank', value: 7, trend: Math.floor(Math.random() * 5) - 2 },
             { id: 'india-rank', value: 7, trend: Math.floor(Math.random() * 3) - 1 }
         ];
-        const collabs = ['links', 'depts', 'connect'].map(id => ({ id, value: id === 'connect' ?
+        const collabs = ['links', 'depts', 'connect'].map(id => ({ id, value: id === 'connect' ? 94 : id === 'depts' ? 23 : 127 }));
+        const insights = [
+            { id: 'next-rank', value: 285 },
+            { id: 'time-left', value: '18 months' },
+            { id: 'growth', value: '+42%' },
+            { id: 'score', value: '8.7/10' }
+        ];
+        const brief = ['pubs', 'colls', 'points', 'prog'];
+
+        ranks.forEach(r => {
+            document.getElementById(r.id).textContent = r.value;
+            document.getElementById(r.id + '-trend').textContent = `↑ ${r.trend}`;
+            qsChart.data.datasets[0].data = [360, 350, 340, r.value, 335];
+            nirfChart.data.datasets[0].data = [9, 8, 7, r.value, 6];
+            indiaChart.data.datasets[0].data = [8, 7, 7, r.value, 6];
+            qsChart.update();
+            nirfChart.update();
+            indiaChart.update();
+        });
+        collabs.forEach(c => document.getElementById(c.id).textContent = c.value);
+        insights.forEach(i => document.getElementById(i.id).textContent = i.value);
+        brief.forEach(id => document.getElementById(id).textContent = Math.floor(Math.random() * 30));
+    };
+
+    updateMetrics();
+    setInterval(updateMetrics, 10000);
+
+    const briefToggle = document.querySelector('.brief-toggle');
+    const briefBox = document.querySelector('.brief-box');
+    const closeBtn = document.querySelector('.close-btn');
+    if (briefToggle) {
+        briefToggle.addEventListener('click', () => {
+            if (briefBox.style.display === 'none' || !briefBox.style.display) {
+                briefBox.style.display = 'flex';
+                briefBox.style.opacity = '0';
+                setTimeout(() => briefBox.style.opacity = '1', 10);
+            } else {
+                briefBox.style.opacity = '0';
+                setTimeout(() => briefBox.style.display = 'none', 300);
+            }
+        });
+    }
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            briefBox.style.opacity = '0';
+            setTimeout(() => briefBox.style.display = 'none', 300);
+        });
+    }
+
+    const buttons = document.querySelectorAll('.action-buttons button');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => button.style.transform = 'scale(1)', 100);
+            alert(`Action "${button.textContent}" logged!`);
+        });
+    });
+});

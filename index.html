@@ -42,137 +42,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IITR Mission Control Excellence Dashboard</title>
+    <title>IITR Mission Control Dashboard</title>
     <link rel="stylesheet" href="./styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <meta http-equiv="cache-control" content="no-cache">
 </head>
 <body>
     <div class="loading">Launching Mission Control...</div>
-    <header style="display: none;">
-        <h1>IITR</h1>
-        <div class="subheader">Mission Control Excellence Dashboard</div>
-        <div class="ticker">Live Mission: Elevate to #220 by 2026...</div>
-    </header>
-
-    <nav style="display: none;">
-        <a href="#overview">Mission Overview</a>
-        <a href="#collabs">Social Fiber</a>
-        <a href="#performance">Department Matrix</a>
-        <a href="#contribute">Live Contributions</a>
-        <a href="#insights">Predictive Analytics</a>
-        <a href="#briefing">Daily Briefing</a>
-    </nav>
-
-    <main style="display: none;">
-        <section id="overview" class="hero-section">
-            <h2 class="section-title">Ranking Spotlight</h2>
-            <div class="hero-grid">
-                <div class="rank-card">
-                    <span class="label">QS World</span>
-                    <span class="value" id="qs-rank">339</span>
-                    <span class="trend" id="qs-trend">↑ 12</span>
-                    <canvas id="qs-chart" width="200" height="100"></canvas>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h1>IITR</h1>
+            </div>
+            <nav>
+                <a href="#overview">Mission Overview</a>
+                <a href="#social-fiber">Social Fiber</a>
+                <a href="#dept-matrix">Department Matrix</a>
+                <a href="#live-contrib">Live Contributions</a>
+                <a href="#predictive">Predictive Analytics</a>
+                <a href="#daily-briefing">Daily Briefing</a>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header>
+                <h2>Mission Control Excellence Dashboard</h2>
+                <div class="ticker">Live Mission: Elevate to #220 by 2026...</div>
+            </header>
+            <section id="overview" class="content-section">
+                <h3>Ranking Spotlight</h3>
+                <div class="rank-grid">
+                    <div class="rank-card">
+                        <span class="label">QS World</span>
+                        <span class="value" id="qs-rank">339</span>
+                        <span class="trend" id="qs-trend">↑ 12</span>
+                        <canvas id="qs-chart" width="200" height="100"></canvas>
+                    </div>
+                    <div class="rank-card">
+                        <span class="label">NIRF</span>
+                        <span class="value" id="nirf-rank">7</span>
+                        <span class="trend" id="nirf-trend">↑ 2</span>
+                        <canvas id="nirf-chart" width="200" height="100"></canvas>
+                    </div>
+                    <div class="rank-card">
+                        <span class="label">India Today</span>
+                        <span class="value" id="india-rank">7</span>
+                        <span class="trend" id="india-trend">↑ 1</span>
+                        <canvas id="india-chart" width="200" height="100"></canvas>
+                    </div>
                 </div>
-                <div class="rank-card">
-                    <span class="label">NIRF</span>
-                    <span class="value" id="nirf-rank">7</span>
-                    <span class="trend" id="nirf-trend">↑ 2</span>
-                    <canvas id="nirf-chart" width="200" height="100"></canvas>
+            </section>
+            <section id="social-fiber" class="content-section" style="display: none;">
+                <h3>Inter-Department Collaboration</h3>
+                <div class="collab-card">
+                    <div class="stat"><span id="links">127</span> Links</div>
+                    <div class="stat"><span id="depts">23</span> Depts</div>
+                    <div class="stat"><span id="connect">94%</span> Connectivity</div>
                 </div>
-                <div class="rank-card">
-                    <span class="label">India Today</span>
-                    <span class="value" id="india-rank">7</span>
-                    <span class="trend" id="india-trend">↑ 1</span>
-                    <canvas id="india-chart" width="200" height="100"></canvas>
+            </section>
+            <section id="dept-matrix" class="content-section" style="display: none;">
+                <h3>Department Performance</h3>
+                <div class="live-box">
+                    <span class="live-tag">LIVE</span>
                 </div>
-            </div>
-            <div class="compare-chart">
-                <canvas id="compare-chart" width="400" height="200"></canvas>
-            </div>
-        </section>
-
-        <section id="collabs" class="support-section">
-            <h3 class="section-title">Inter-Department Collaboration Network</h3>
-            <div class="collab-card">
-                <div class="stat"><span id="links">127</span> Links</div>
-                <div class="stat"><span id="depts">23</span> Depts</div>
-                <div class="stat"><span id="connect">94%</span> Connectivity</div>
-            </div>
-        </section>
-
-        <section id="performance" class="expand-section">
-            <h3 class="section-title">Department Performance Matrix</h3>
-            <div class="live-box">
-                <span class="live-tag">LIVE</span>
-            </div>
-            <div class="champ-box">
-                <span>Top Performers</span>
-                <select>
-                    <option value="day">Today</option>
-                    <option value="week">Week</option>
-                    <option value="month">Month</option>
-                </select>
-            </div>
-        </section>
-
-        <section id="contribute" class="expand-section">
-            <h3 class="section-title">Effortless Contributions</h3>
-            <div class="action-buttons">
-                <button>📄 Publish Paper</button>
-                <button>🤝 Start Collab</button>
-                <button>🏆 Student Win</button>
-                <button>💡 New Patent</button>
-            </div>
-        </section>
-
-        <section id="insights" class="support-section">
-            <h3 class="section-title">Predictive Analytics & Trajectory</h3>
-            <div class="insight-card">
-                <div>Next Rank: <span id="next-rank">285</span></div>
-                <div>Time to #220: <span id="time-left">18 months</span></div>
-                <div>Growth Rate: <span id="growth">+42%</span></div>
-                <div>Collab Score: <span id="score">8.7/10</span></div>
-            </div>
-        </section>
-
-        <section id="briefing" class="support-section">
-            <h3 class="section-title">Daily Briefing</h3>
-            <button class="brief-toggle">View Briefing</button>
-            <div class="brief-box" style="display: none;">
-                <h4>Update - July 13</h4>
-                <div class="brief-stats">
-                    <div><span id="pubs">23</span> Papers</div>
-                    <div><span id="colls">8</span> Collabs</div>
-                    <div><span id="points">+0.8</span> Points</div>
-                    <div><span id="prog">94%</span> Progress</div>
+                <div class="champ-box">
+                    <span>Top Performers</span>
+                    <select>
+                        <option value="day">Today</option>
+                        <option value="week">Week</option>
+                        <option value="month">Month</option>
+                    </select>
                 </div>
-                <button class="close-btn">Dismiss</button>
-            </div>
-        </section>
-
-        <div class="alert-box" style="display: none;">
-            🎉 New Milestone!
-            <p>Research boost from Dr. Sharma!</p>
-        </div>
-
-        <div class="form-section">
-            <h3 class="section-title">Your Achievements</h3>
-            <div class="form-buttons">
-                <button>📝 Submit Paper</button>
-                <button>🤲 New Collab</button>
-                <button>💸 Secure Funding</button>
-                <button>🎓 Student Success</button>
-            </div>
-        </div>
-    </main>
-
-    <footer style="display: none;">
-        <a href="#">📋 Daily Brief</a>
-        <a href="#">➕ Contribute</a>
-        <a href="#">📊 Insights</a>
-    </footer>
-
+            </section>
+            <section id="live-contrib" class="content-section" style="display: none;">
+                <h3>Live Contributions</h3>
+                <div class="action-buttons">
+                    <button>📄 Publish Paper</button>
+                    <button>🤝 Start Collab</button>
+                    <button>🏆 Student Win</button>
+                    <button>💡 New Patent</button>
+                </div>
+            </section>
+            <section id="predictive" class="content-section" style="display: none;">
+                <h3>Predictive Analytics</h3>
+                <div class="insight-card">
+                    <div>Next Rank: <span id="next-rank">285</span></div>
+                    <div>Time to #220: <span id="time-left">18 months</span></div>
+                    <div>Growth Rate: <span id="growth">+42%</span></div>
+                    <div>Collab Score: <span id="score">8.7/10</span></div>
+                </div>
+            </section>
+            <section id="daily-briefing" class="content-section" style="display: none;">
+                <h3>Daily Briefing</h3>
+                <button class="brief-toggle">View Briefing</button>
+                <div class="brief-box" style="display: none;">
+                    <h4>Update - July 13</h4>
+                    <div class="brief-stats">
+                        <div><span id="pubs">23</span> Papers</div>
+                        <div><span id="colls">8</span> Collabs</div>
+                        <div><span id="points">+0.8</span> Points</div>
+                        <div><span id="prog">94%</span> Progress</div>
+                    </div>
+                    <button class="close-btn">Dismiss</button>
+                </div>
+            </section>
+        </main>
+    </div>
     <script src="./script.js" defer></script>
 </body>
 </html>
