@@ -1,172 +1,178 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Simulate loading completion
     const loading = document.querySelector('.loading');
     if (loading) {
         setTimeout(() => {
-            loading.style.display = 'none';
-            document.querySelector('header').style.display = 'block';
-            document.querySelector('nav').style.display = 'block';
-            document.querySelector('main').style.display = 'block';
-            document.querySelector('footer').style.display = 'block';
+            loading.style.opacity = '0';
+            setTimeout(() => {
+                loading.style.display = 'none';
+                document.querySelector('header').style.display = 'block';
+                document.querySelector('nav').style.display = 'block';
+                document.querySelector('main').style.display = 'block';
+                document.querySelector('footer').style.display = 'block';
+                ['header', 'nav', 'main', 'footer'].forEach(id => {
+                    const el = document.querySelector(id);
+                    el.style.opacity = '0';
+                    setTimeout(() => el.style.transition = 'opacity 0.5s', 10);
+                    setTimeout(() => el.style.opacity = '1', 20);
+                });
+            }, 500);
         }, 2000);
     }
 
-    // Initialize Charts
-    const qsChart = new Chart(document.getElementById('qs-trend-chart'), {
+    const qsChart = new Chart(document.getElementById('qs-chart'), {
         type: 'line',
         data: {
             labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
             datasets: [{
-                label: 'QS Ranking',
+                label: 'QS Rank',
                 data: [360, 350, 340, 339, 335],
-                borderColor: '#e74c3c',
+                borderColor: '#e57373',
                 fill: false,
-                tension: 0.1
+                tension: 0.2,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
-            plugins: { legend: { labels: { color: '#ecf0f1' } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
-    const nirfChart = new Chart(document.getElementById('nirf-trend-chart'), {
+    const nirfChart = new Chart(document.getElementById('nirf-chart'), {
         type: 'line',
         data: {
             labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
             datasets: [{
-                label: 'NIRF Ranking',
+                label: 'NIRF Rank',
                 data: [9, 8, 7, 7, 6],
-                borderColor: '#e74c3c',
+                borderColor: '#e57373',
                 fill: false,
-                tension: 0.1
+                tension: 0.2,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
-            plugins: { legend: { labels: { color: '#ecf0f1' } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
-    const indiaChart = new Chart(document.getElementById('india-trend-chart'), {
+    const indiaChart = new Chart(document.getElementById('india-chart'), {
         type: 'line',
         data: {
             labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
             datasets: [{
-                label: 'India Today',
+                label: 'India Rank',
                 data: [8, 7, 7, 7, 6],
-                borderColor: '#e74c3c',
+                borderColor: '#e57373',
                 fill: false,
-                tension: 0.1
+                tension: 0.2,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointHoverRadius: 7
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
-            plugins: { legend: { labels: { color: '#ecf0f1' } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
-    const comparisonChart = new Chart(document.getElementById('comparison-bar-chart'), {
+    const compareChart = new Chart(document.getElementById('compare-chart'), {
         type: 'bar',
         data: {
-            labels: ['QS', 'NIRF', 'India Today'],
+            labels: ['QS', 'NIRF', 'India'],
             datasets: [{
-                label: 'Current Rank',
+                label: 'Current',
                 data: [339, 7, 7],
-                backgroundColor: '#e74c3c'
+                backgroundColor: '#e57373',
+                borderColor: '#fff',
+                borderWidth: 1
             }, {
-                label: 'Target Rank',
+                label: 'Target',
                 data: [220, 3, 4],
-                backgroundColor: '#2ecc71'
+                backgroundColor: '#81c784',
+                borderColor: '#fff',
+                borderWidth: 1
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
-            plugins: { legend: { labels: { color: '#ecf0f1' } } }
+            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
-    // Simulate live updates for rankings and metrics
     const updateMetrics = () => {
-        const rankings = [
-            { id: 'qs-ranking', value: 339, change: Math.floor(Math.random() * 20) - 10, target: 220 },
-            { id: 'nirf-ranking', value: 7, change: Math.floor(Math.random() * 5) - 2, target: 3 },
-            { id: 'india-today-ranking', value: 7, change: Math.floor(Math.random() * 3) - 1, target: 4 }
+        const ranks = [
+            { id: 'qs-rank', value: 339, trend: Math.floor(Math.random() * 20) - 10 },
+            { id: 'nirf-rank', value: 7, trend: Math.floor(Math.random() * 5) - 2 },
+            { id: 'india-rank', value: 7, trend: Math.floor(Math.random() * 3) - 1 }
         ];
-        const collaborations = [
-            { id: 'collaboration-links', value: 127 },
-            { id: 'collaboration-depts', value: 23 },
-            { id: 'collaboration-connectivity', value: 94 }
+        const collabs = ['links', 'depts', 'connect'].map(id => ({ id, value: id === 'connect' ? 94 : id === 'depts' ? 23 : 127 }));
+        const insights = [
+            { id: 'next-rank', value: 285 },
+            { id: 'time-left', value: '18 months' },
+            { id: 'growth', value: '+42%' },
+            { id: 'score', value: '8.7/10' }
         ];
-        const predictions = [
-            { id: 'prediction-ranking', value: 285 },
-            { id: 'prediction-time', value: '18 months' },
-            { id: 'prediction-growth', value: '+42%' },
-            { id: 'prediction-index', value: '8.7/10' }
-        ];
-        const briefingMetrics = ['briefing-publications', 'briefing-collaborations', 'briefing-points', 'briefing-progress'];
+        const brief = ['pubs', 'colls', 'points', 'prog'];
 
-        rankings.forEach(r => {
-            document.getElementById(r.id).textContent = `${r.value === 339 ? 'Global' : r.value === 7 ? 'National' : 'Media'} #${r.value}`;
-            document.getElementById(r.id + '-change').textContent = `↑ ${r.change}`;
+        ranks.forEach(r => {
+            document.getElementById(r.id).textContent = r.value;
+            document.getElementById(r.id + '-trend').textContent = `↑ ${r.trend}`;
             qsChart.data.datasets[0].data = [360, 350, 340, r.value, 335];
             nirfChart.data.datasets[0].data = [9, 8, 7, r.value, 6];
             indiaChart.data.datasets[0].data = [8, 7, 7, r.value, 6];
-            comparisonChart.data.datasets[0].data = [r.value, rankings[1].value, rankings[2].value];
+            compareChart.data.datasets[0].data = [r.value, ranks[1].value, ranks[2].value];
             qsChart.update();
             nirfChart.update();
             indiaChart.update();
-            comparisonChart.update();
+            compareChart.update();
         });
-        collaborations.forEach(c => {
-            document.getElementById(c.id).textContent = c.value;
-        });
-        predictions.forEach(p => {
-            document.getElementById(p.id).textContent = p.value;
-        });
-        briefingMetrics.forEach(id => {
-            document.getElementById(id).textContent = Math.floor(Math.random() * 30);
-        });
+        collabs.forEach(c => document.getElementById(c.id).textContent = c.value);
+        insights.forEach(i => document.getElementById(i.id).textContent = i.value);
+        brief.forEach(id => document.getElementById(id).textContent = Math.floor(Math.random() * 30));
 
-        // Simulate achievement
-        const achievement = document.querySelector('.achievement');
-        if (achievement && Math.random() > 0.7) {
-            achievement.style.display = 'block';
-            setTimeout(() => achievement.style.display = 'none', 5000);
+        const alert = document.querySelector('.alert-box');
+        if (alert && Math.random() > 0.7) {
+            alert.style.display = 'block';
+            setTimeout(() => alert.style.display = 'none', 5000);
         }
 
-        // Toggle briefing
-        const briefing = document.querySelector('.briefing');
-        if (briefing && !briefing.style.display) {
-            briefing.style.display = 'flex';
+        const briefBox = document.querySelector('.brief-box');
+        if (briefBox && !briefBox.style.display) {
+            briefBox.style.display = 'flex';
         }
-        const closeBtn = document.querySelector('.briefing .close');
+        const closeBtn = document.querySelector('.close-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                briefing.style.display = 'none';
+                briefBox.style.opacity = '0';
+                setTimeout(() => briefBox.style.display = 'none', 300);
             });
         }
-
-        console.log('Dashboard updated at ' + new Date().toLocaleTimeString());
     };
 
-    // Initial update and set interval (10 seconds for demo, adjust to 24h later)
     updateMetrics();
     setInterval(updateMetrics, 10000);
 
-    // Contribution button interactions
-    const contributionButtons = document.querySelectorAll('.contribution-buttons button, .contribution-form button');
-    contributionButtons.forEach(button => {
+    const buttons = document.querySelectorAll('.action-buttons button, .form-buttons button');
+    buttons.forEach(button => {
         button.addEventListener('click', () => {
-            alert(`Contribution "${button.textContent.replace(' →', '')}" recorded!`);
+            button.style.transform = 'scale(0.95)';
+            setTimeout(() => button.style.transform = 'scale(1)', 100);
+            alert(`Action "${button.textContent}" logged!`);
         });
     });
 });
