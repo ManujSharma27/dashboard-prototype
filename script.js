@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loading.style.display = 'none';
                 dashboard.classList.add('active');
             }, 500);
-        }, 1500); // Reduced from 2000 to 1500ms
+        }, 2000);
     }
 
     const sidebar = document.querySelector('.sidebar');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'QS Rank',
                 data: [405, 400, 383, 369, 357, 347, 342, 339],
-                borderColor: '#ff2d55',
+                borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
                 pointRadius: 5,
@@ -55,8 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#ffffff', stepSize: 10, min: 300, max: 410 } } },
-            plugins: { legend: { labels: { color: '#ffffff' } } }
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 10, min: 300, max: 410 } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'NIRF Rank',
                 data: [9, 8, 8, 7, 7, 7, 7, 7],
-                borderColor: '#ff2d55',
+                borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
                 pointRadius: 5,
@@ -77,8 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#ffffff', stepSize: 1, min: 6, max: 10 } } },
-            plugins: { legend: { labels: { color: '#ffffff' } } }
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 1, min: 6, max: 10 } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'India Today Rank',
                 data: [8, 8, 7, 7, 7, 7, 7, 7],
-                borderColor: '#ff2d55',
+                borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
                 pointRadius: 5,
@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#ffffff', stepSize: 1, min: 6, max: 10 } } },
-            plugins: { legend: { labels: { color: '#ffffff' } } }
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 1, min: 6, max: 10 } } },
+            plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
 
