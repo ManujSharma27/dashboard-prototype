@@ -7,6 +7,13 @@ body {
     line-height: 1.6;
 }
 
+.loading {
+    text-align: center;
+    padding: 20px;
+    color: #7f8c8d;
+    font-size: 1.5em;
+}
+
 header {
     background: #2c3e50;
     padding: 10px 20px;
@@ -24,6 +31,7 @@ header h1 {
 .subheader {
     font-size: 1.5em;
     color: #ecf0f1;
+    line-height: 1.2;
 }
 
 .ticker {
@@ -35,6 +43,7 @@ header h1 {
     background: #34495e;
     padding: 5px;
     border-radius: 3px;
+    margin-top: 5px;
 }
 
 @keyframes ticker {
@@ -67,6 +76,7 @@ nav a:hover {
     background: #2c3e50;
     border-radius: 5px;
     margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .section-title {
@@ -133,6 +143,7 @@ nav a:hover {
     padding: 0 20px;
     background: #2c3e50;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .comparison-chart canvas {
@@ -147,6 +158,7 @@ nav a:hover {
     background: #2c3e50;
     border-radius: 5px;
     margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .collaboration-card {
@@ -183,6 +195,7 @@ nav a:hover {
     background: #2c3e50;
     border-radius: 5px;
     margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .contribution-buttons button {
@@ -195,10 +208,19 @@ nav a:hover {
     cursor: pointer;
     font-size: 1em;
     transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 250px;
 }
 
 .contribution-buttons button:hover {
     background: #219653;
+}
+
+.contribution-buttons button span {
+    margin-left: 10px;
 }
 
 .live-stream, .champions {
@@ -240,6 +262,7 @@ nav a:hover {
     background: #34495e;
     padding: 10px;
     border-radius: 3px;
+    color: #e0e0e0;
 }
 
 .achievement {
@@ -279,6 +302,7 @@ nav a:hover {
     background: #2c3e50;
     border-radius: 5px;
     margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .contribution-form button {
@@ -332,5 +356,8 @@ footer a:hover {
     }
     .comparison-chart canvas {
         height: 150px !important;
+    }
+    .contribution-buttons button {
+        max-width: 100%;
     }
 }

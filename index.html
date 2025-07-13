@@ -48,41 +48,46 @@
     <meta http-equiv="cache-control" content="no-cache">
 </head>
 <body>
-    <header>
-        <h1>IITR Mission Control</h1>
-        <div class="subheader">Strategic Excellence Dashboard</div>
-        <div class="ticker">Target: 10 New Research Papers Today...</div>
+    <div class="loading">Initializing Mission Control...</div>
+    <header style="display: none;">
+        <h1>IITR</h1>
+        <div class="subheader">
+            Mission Control
+            <br>Strategic Excellence Dashboard
+        </div>
+        <div class="ticker">Mission Update: T-10 and Counting...</div>
     </header>
 
-    <nav>
-        <a href="#overview">Dashboard Overview</a>
-        <a href="#departments">Department Deep-dive</a>
-        <a href="#performance">Individual Performance</a>
-        <a href="#benchmarking">Benchmarking & Comparisons</a>
-        <a href="#actions">Action Items</a>
+    <nav style="display: none;">
+        <a href="#overview">Mission Overview</a>
+        <a href="#social">Social Fiber</a>
+        <a href="#matrix">Department Matrix</a>
+        <a href="#live">Live Contributions</a>
+        <a href="#predictive">Predictive Analytics</a>
+        <a href="#briefing">Daily Briefing</a>
     </nav>
 
-    <main>
+    <main style="display: none;">
         <section id="overview" class="hero-section">
             <h2 class="section-title">Ranking Highlights</h2>
             <div class="hero-card">
                 <div class="ranking-card">
                     <span class="label">QS World Ranking</span>
-                    <span class="value" id="qs-ranking">#339</span>
+                    <span class="value" id="qs-ranking">Global #339</span>
                     <span class="change" id="qs-change">↑ 12</span>
                     <span class="target">Target: #220 by 2026</span>
                     <canvas id="qs-trend-chart" width="200" height="100"></canvas>
                 </div>
                 <div class="ranking-card">
                     <span class="label">NIRF Ranking</span>
-                    <span class="value" id="nirf-ranking">#7</span>
+                    <span class="value" id="nirf-ranking">National #7</span>
                     <span class="change" id="nirf-change">↑ 2</span>
                     <span class="target">Target: #3 by 2026</span>
                     <canvas id="nirf-trend-chart" width="200" height="100"></canvas>
                 </div>
                 <div class="ranking-card">
                     <span class="label">India Today</span>
-                    <span class="value" id="india-today-ranking">#7</span>
+                    <span class="value" id="india-today-ranking">Media #7</span>
                     <span class="change" id="india-today-change">↑ 1</span>
                     <span class="target">Target: #4 by 2026</span>
                     <canvas id="india-trend-chart" width="200" height="100"></canvas>
@@ -93,10 +98,10 @@
             </div>
         </section>
 
-        <section class="supporting-section">
-            <h3 class="section-title">Collaboration Network</h3>
+        <section id="social" class="supporting-section">
+            <h3 class="section-title">Inter-Department Collaboration Network</h3>
             <div class="collaboration-card">
-                <span class="label">Inter-Department Collaboration</span>
+                <span class="label"></span>
                 <div class="stats">
                     <div><span id="collaboration-links">127</span> Active Links</div>
                     <div><span id="collaboration-depts">23</span> Departments</div>
@@ -105,22 +110,21 @@
             </div>
         </section>
 
-        <section class="expandable-section">
-            <h3 class="section-title">Live Contributions</h3>
+        <section id="live" class="expandable-section">
+            <h3 class="section-title">Effortless Contributions</h3>
             <div class="contribution-buttons">
-                <button>📚 Published a Paper</button>
-                <button>🤝 Started Collaboration</button>
-                <button>🏆 Student Achievement</button>
-                <button>💡 Filed Patent/IP</button>
-                <button>🌍 Conference Participation</button>
+                <button>📚 Published a Paper <span>→</span></button>
+                <button>🤝 Started Collaboration <span>→</span></button>
+                <button>🏆 Student Achievement <span>→</span></button>
+                <button>💡 Filed Patent/IP <span>→</span></button>
+                <button>🌍 Conference Participation <span>→</span></button>
             </div>
         </section>
 
-        <section class="expandable-section">
-            <h3 class="section-title">Department Performance</h3>
+        <section id="matrix" class="expandable-section">
+            <h3 class="section-title">Department Performance Matrix</h3>
             <div class="live-stream">
                 <span class="live-indicator">LIVE</span>
-                <!-- Placeholder for live stream -->
             </div>
             <div class="champions">
                 <span>Excellence Champions</span>
@@ -132,18 +136,18 @@
             </div>
         </section>
 
-        <section class="supporting-section">
-            <h3 class="section-title">Predictive Analytics</h3>
+        <section id="predictive" class="supporting-section">
+            <h3 class="section-title">Predictive Analytics & Trajectory</h3>
             <div class="analytics-card">
-                <div>QS Ranking Prediction (Q3 2025): <span id="prediction-ranking">#285</span></div>
-                <div>Time to Top 220: <span id="prediction-time">18 months</span></div>
-                <div>Research Output Growth: <span id="prediction-growth">+42%</span></div>
-                <div>Collaboration Index: <span id="prediction-index">8.7/10</span></div>
+                <div>QS Ranking Prediction (Q3 2025): <span id="prediction-ranking">#285</span> <span>87% confidence</span></div>
+                <div>Time to Top 220: <span id="prediction-time">18 months</span> <span>Based on current velocity</span></div>
+                <div>Research Output Growth: <span id="prediction-growth">+42%</span> <span>Year-over-year projection</span></div>
+                <div>Collaboration Index: <span id="prediction-index">8.7/10</span> <span>Above global average</span></div>
             </div>
         </section>
 
         <div class="achievement" style="display: none;">
-            New Achievement!
+            ✨ New Achievement!
             <p>Dr. Sharma's paper just boosted our research score by 0.3 points!</p>
         </div>
 
@@ -168,7 +172,7 @@
         </div>
     </main>
 
-    <footer>
+    <footer style="display: none;">
         <a href="#">📊 View Daily Brief</a>
         <a href="#">🚀 Contribute Now</a>
         <a href="#">📈 Analytics</a>

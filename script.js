@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('header').style.display = 'block';
             document.querySelector('nav').style.display = 'block';
             document.querySelector('main').style.display = 'block';
+            document.querySelector('footer').style.display = 'block';
         }, 2000);
     }
 
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false } },
+            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
             plugins: { legend: { labels: { color: '#ecf0f1' } } }
         }
     });
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false } },
+            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
             plugins: { legend: { labels: { color: '#ecf0f1' } } }
         }
     });
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false } },
+            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
             plugins: { legend: { labels: { color: '#ecf0f1' } } }
         }
     });
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false } },
+            scales: { y: { beginAtZero: false, ticks: { color: '#ecf0f1' } } },
             plugins: { legend: { labels: { color: '#ecf0f1' } } }
         }
     });
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const briefingMetrics = ['briefing-publications', 'briefing-collaborations', 'briefing-points', 'briefing-progress'];
 
         rankings.forEach(r => {
-            document.getElementById(r.id).textContent = r.value;
+            document.getElementById(r.id).textContent = `${r.value === 339 ? 'Global' : r.value === 7 ? 'National' : 'Media'} #${r.value}`;
             document.getElementById(r.id + '-change').textContent = `↑ ${r.change}`;
             qsChart.data.datasets[0].data = [360, 350, 340, r.value, 335];
             nirfChart.data.datasets[0].data = [9, 8, 7, r.value, 6];
@@ -165,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contributionButtons = document.querySelectorAll('.contribution-buttons button, .contribution-form button');
     contributionButtons.forEach(button => {
         button.addEventListener('click', () => {
-            alert(`Contribution "${button.textContent}" recorded!`);
+            alert(`Contribution "${button.textContent.replace(' →', '')}" recorded!`);
         });
     });
 });
