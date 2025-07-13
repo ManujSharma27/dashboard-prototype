@@ -1,10 +1,10 @@
 
-/* Apply a starry night sky background */
+/* Applying Starry Night Sky Background */
 body {
     font-family: 'Arial', sans-serif;
     background: url('https://www.w3schools.com/w3images/stars.jpg') no-repeat center center fixed;
     background-size: cover;
-    color: #2E2E2E; /* Dark gray font */
+    color: #2E2E2E; /* Dark gray font color */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -16,14 +16,14 @@ body {
     100% { background-position: 30px 30px; }
 }
 
-/* Dashboard container with glass effect */
+/* Dashboard Container with Frosted Glass Effect */
 .dashboard-container {
     display: flex;
     height: 100vh;
     opacity: 0;
     transition: opacity 0.5s ease-in;
-    backdrop-filter: blur(12px); /* Glass effect */
-    border-radius: 15px; /* Rounded corners */
+    backdrop-filter: blur(10px); /* Frosted Glass Effect */
+    border-radius: 20px; /* Rounded corners */
     box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
 }
 
@@ -31,13 +31,13 @@ body {
     opacity: 1;
 }
 
-/* Sidebar with frosted glass effect */
+/* Sidebar with Frosted Glass and Modern UI */
 .sidebar {
     width: 250px;
-    background: rgba(26, 42, 68, 0.8);
+    background: rgba(26, 42, 68, 0.7);
     padding: 20px 0;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(15px); /* Glass Effect */
     position: fixed;
     height: 100%;
     z-index: 100;
@@ -48,14 +48,14 @@ body {
 .sidebar .logo h1 {
     text-align: center;
     font-size: 2.5em;
-    color: #4a90e2;
+    color: #76b6e2;
     text-transform: uppercase;
     margin-bottom: 30px;
 }
 
 .sidebar nav a {
     display: block;
-    color: #b3cde0;
+    color: #e0e0e0;
     text-decoration: none;
     padding: 15px 25px;
     font-size: 1.2em;
@@ -69,20 +69,20 @@ body {
     padding-left: 30px;
 }
 
-/* Main content area */
+/* Main content with rounded corners and glass effect */
 .main-content {
     margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
     overflow-y: auto;
-    backdrop-filter: blur(12px);
-    border-radius: 15px;
+    backdrop-filter: blur(12px); /* Glass Effect */
+    border-radius: 20px;  /* Rounded corners */
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
+/* Header Styling */
 header {
-    background: rgba(26, 42, 68, 0.7);
+    background: rgba(26, 42, 68, 0.6);
     padding: 15px 30px;
     border-radius: 15px;
     backdrop-filter: blur(15px);
@@ -95,13 +95,13 @@ header h2 {
     color: #76b6e2;
 }
 
-/* Rank card with rounded corners */
+/* Rank Cards with Glass Effect */
 .rank-card {
     background: rgba(10, 15, 26, 0.5);
     padding: 15px;
     border-radius: 15px; /* Rounded corners */
     text-align: center;
-    backdrop-filter: blur(8px); /* Glass effect */
+    backdrop-filter: blur(8px); /* Glass Effect */
     box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.1), 0 5px 10px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s;
 }
@@ -126,7 +126,7 @@ header h2 {
     color: #81c784;
 }
 
-/* Chart styling with rounded corners */
+/* Chart Styling for Rank Cards */
 .rank-card canvas {
     margin-top: 10px;
     width: 100% !important;
@@ -136,7 +136,7 @@ header h2 {
     backdrop-filter: blur(10px);
 }
 
-/* Button styling */
+/* Buttons with Rounded Corners */
 button, a {
     border-radius: 10px;
     transition: all 0.3s ease;
@@ -147,7 +147,7 @@ button:hover, a:hover {
     transform: scale(1.05);
 }
 
-/* Section with content and glass effect */
+/* Content Sections with Frosted Glass */
 .content-section {
     background: rgba(26, 42, 68, 0.4);
     padding: 20px;
@@ -156,3 +156,5 @@ button:hover, a:hover {
     box-shadow: inset 0 0 30px rgba(74, 144, 226, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(18px);
 }
+
+/* Apply modern font colors and rounded design to other sections */
