@@ -1,10 +1,10 @@
 
-/* Body with starry night sky background and glass-like effect */
+/* Body with starry night sky background and frosted glass effect */
 body {
     font-family: 'Arial', sans-serif;
-    background: url('https://www.w3schools.com/w3images/stars.jpg') no-repeat center center fixed;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABJYAAARuCAYAAADRYFjjAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjAuMiD5KKM2AAAACXBIWXMAAB7CAAAewgFu0HU+AAADwklEQVR4nOzdeXQTZfvH8a/3XqZ4JllZmb9hbPb66lO47PYIiZKNFbePbgq47V2lABAo6rwBrGkmQRYN1pBQ/IkZYKPSnHezwnxlcPmtCEIFyAIhWZgBqkr9gaZkBYjAfzMEAvzPyzYVrgBA2o2quCBpBKgAcpFdE4IsFReIhlSzwnldgWA8U6xTSJl/KUS+oWGo16wb+aJfa5okxzLf3zq+LgW7Yo6Dd6lFdrQLVHLvLSik7IWYZqRZGzso4HDtDTWR7X4n02Q7eGhYmejfHdfRjc74rt1qghH34E1lfS2jBixmAO0ycuFXXbyzCUHYw38QpOahLeVm2kB+n34m6aBPGZyQADxhW6bIp/6fP6yFw7jygme1uquITpeEqc/yv63QF90qfp5t1Ho02hh0eqgpnHFVsYxFwfzQ+JONe9g0vnmu7dqZ0Mn16zszK6f7tffXAl6LkB9nH51MG69BCFzjmdm6sDvhJZyaoBHvz+LD/aJ82C6ebti1DAgYEqh0l0y7EwlDgTTZgVAZrXIVz6B6PmxW4tbbW1A0oio0O9jRlpuZz1tiD3vRf0Fcz9V/JxsQEBzK0Ytw8k3t6C1fVpmiYtZ3dG9+5sNiXUmjNmbEDgbPQ9fnWf5uIHfhxHqylYY9GGzvoZ8g4+bcwlyZB9vVe0Baap8+mLwlg2hBBNmHUM68oH3vVzEdrYr7bftDLkygDR2z1rbqdTo7HFw+qnkDQfwY1shnP06jl4fdkOYVNi5EITwYP3TKcd7OngPrGljOGzSh3eqNEoHL7ATuTnChdvl96fgfZGiN7C7L4XHrB9ddp5TQwaRaTtdd2IZStfM2GnLhM1zx2rn0ZdNeUlkp5dZ9q2gxBQY2MNzFz6jtgfGKvfcumqBr07sRUv9hQy0Tt0Yr49lIbixpLPjDWvT68ftb2ar4tvl6ok3Jb93URLOmZxg7rSkFSh1jNtb8gp7pA2tXZvx6NkZzJjZh+om09j7stKvDlNkQF57akO4AJmYcZrjBZ2tCwIAfIjaOUOxiefo7ckk7qL3OBk44Q06gHg=='); 
     background-size: cover;
-    color: #333333; /* Dark gray font color */
+    color: #222; /* Dark gray font color */
     margin: 0;
     padding: 0;
     overflow-x: hidden;
