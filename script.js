@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const loading = document.querySelector('.loading');
-    if (loading) {
+    const dashboard = document.querySelector('.dashboard-container');
+    if (loading && dashboard) {
         setTimeout(() => {
             loading.style.opacity = '0';
             setTimeout(() => {
                 loading.style.display = 'none';
-                document.querySelector('.dashboard-container').style.opacity = '1';
+                dashboard.classList.add('active');
             }, 500);
         }, 2000);
     }

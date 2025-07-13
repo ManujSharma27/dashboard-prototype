@@ -43,15 +43,20 @@ body {
 .dashboard-container {
     display: flex;
     height: 100vh;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+}
+
+.dashboard-container.active {
+    opacity: 1;
 }
 
 .sidebar {
     width: 250px;
-    background: rgba(26, 42, 68, 0.9);
+    background: rgba(26, 42, 68, 0.7);
     padding: 20px 0;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(15px);
-    border-right: 3px solid #4a90e2;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
     position: fixed;
     height: 100%;
     z-index: 100;
@@ -91,12 +96,12 @@ body {
 }
 
 header {
-    background: rgba(26, 42, 68, 0.85);
+    background: rgba(26, 42, 68, 0.6);
     padding: 15px 30px;
-    border-bottom: 3px solid #4a90e2;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
     margin-bottom: 20px;
+    box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.3);
 }
 
 header h2 {
@@ -112,12 +117,12 @@ header h2 {
     white-space: nowrap;
     overflow: hidden;
     animation: ticker 18s infinite linear;
-    background: rgba(26, 42, 68, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     padding: 8px 15px;
     border-radius: 10px;
     margin-top: 10px;
     box-shadow: 0 2px 10px rgba(244, 208, 63, 0.3);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(10px);
 }
 
 @keyframes ticker {
@@ -126,14 +131,13 @@ header h2 {
 }
 
 .content-section {
-    background: rgba(26, 42, 68, 0.9);
+    background: rgba(26, 42, 68, 0.4);
     padding: 20px;
     border-radius: 15px;
     margin-bottom: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7);
-    border: 2px solid #4a90e2;
-    backdrop-filter: blur(15px);
-    transition: opacity 0.3s;
+    box-shadow: inset 0 0 30px rgba(74, 144, 226, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    transition: transform 0.3s, opacity 0.3s;
 }
 
 .content-section h3 {
@@ -150,12 +154,17 @@ header h2 {
 }
 
 .rank-card {
-    background: linear-gradient(135deg, rgba(10, 15, 26, 0.9), rgba(26, 42, 68, 0.9));
+    background: rgba(10, 15, 26, 0.3);
     padding: 15px;
     border-radius: 10px;
-    border: 2px solid #4a90e2;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.1), 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.rank-card:hover {
+    transform: translateY(-5px);
 }
 
 .rank-card .label {
@@ -179,9 +188,10 @@ header h2 {
     margin-top: 10px;
     width: 100% !important;
     height: 100px !important;
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     border-radius: 5px;
-    border: 1px solid #4a90e2;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.1);
 }
 
 .collab-card {
@@ -191,20 +201,23 @@ header h2 {
 }
 
 .collab-card .stat {
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     padding: 10px;
     border-radius: 8px;
     font-size: 1.1em;
     color: #b3cde0;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 15px rgba(74, 144, 226, 0.1);
 }
 
 .live-box {
     margin: 15px 0;
     padding: 10px;
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     border-radius: 8px;
-    border: 1px solid #4a90e2;
     text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 15px rgba(74, 144, 226, 0.1);
 }
 
 .live-tag {
@@ -215,23 +228,25 @@ header h2 {
 .champ-box {
     margin: 15px 0;
     padding: 10px;
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     border-radius: 8px;
-    border: 1px solid #4a90e2;
     text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 15px rgba(74, 144, 226, 0.1);
 }
 
 .champ-box select {
     padding: 8px;
     margin-top: 5px;
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     color: #b3cde0;
     border: none;
     border-radius: 5px;
+    backdrop-filter: blur(10px);
 }
 
 .action-buttons button {
-    background: #81c784;
+    background: rgba(129, 199, 132, 0.7);
     border: none;
     padding: 10px 20px;
     margin: 5px;
@@ -239,10 +254,12 @@ header h2 {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgba(129, 199, 132, 0.3);
 }
 
 .action-buttons button:hover {
-    background: #66bb6a;
+    background: rgba(102, 187, 106, 0.9);
     transform: translateY(-2px);
 }
 
@@ -255,37 +272,41 @@ header h2 {
 .insight-card div {
     flex: 1;
     min-width: 200px;
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     padding: 10px;
     border-radius: 8px;
     color: #b3cde0;
     text-align: center;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 15px rgba(74, 144, 226, 0.1);
 }
 
 .brief-toggle {
-    background: #4a90e2;
+    background: rgba(74, 144, 226, 0.7);
     border: none;
     padding: 10px 20px;
     color: #fff;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s;
-    margin: 15px 0;
+    backdrop-filter: blur(10px);
+    box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
 .brief-toggle:hover {
-    background: #357abd;
+    background: rgba(53, 122, 189, 0.9);
     transform: translateY(-2px);
 }
 
 .brief-box {
-    background: rgba(10, 15, 26, 0.7);
+    background: rgba(10, 15, 26, 0.5);
     padding: 15px;
     border-radius: 8px;
-    border: 1px solid #4a90e2;
     display: none;
     flex-direction: column;
     align-items: center;
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.2);
 }
 
 .brief-box h4 {
@@ -301,24 +322,26 @@ header h2 {
 }
 
 .brief-stats div {
-    background: rgba(26, 42, 68, 0.7);
+    background: rgba(26, 42, 68, 0.6);
     padding: 8px;
     border-radius: 5px;
     color: #b3cde0;
+    backdrop-filter: blur(10px);
 }
 
 .brief-box .close-btn {
-    background: #e57373;
+    background: rgba(229, 115, 115, 0.7);
     border: none;
     padding: 8px 15px;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
+    backdrop-filter: blur(10px);
 }
 
 .brief-box .close-btn:hover {
-    background: #ef5350;
+    background: rgba(239, 83, 80, 0.9);
     transform: scale(1.1);
 }
 
