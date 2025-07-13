@@ -1,14 +1,197 @@
 body {
-    font-family: Arial, sans-serif;
-    background: #222;
-    color: #fff;
+    font-family: 'Arial', sans-serif;
+    background: #1a1a1a;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: #2c3e50;
+    padding: 10px 20px;
+    text-align: center;
+    position: relative;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+    color: #3498db;
+}
+
+header .subheader {
+    font-size: 1.2em;
+    color: #ecf0f1;
+}
+
+.loading {
     text-align: center;
     padding: 20px;
+    color: #7f8c8d;
 }
-.status {
-    background: #28a745;
+
+nav {
+    background: #34495e;
     padding: 10px;
-    width: 100px;
-    margin: 20px auto;
+    text-align: center;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #3498db;
+}
+
+.section-title {
+    font-size: 1.5em;
+    color: #2ecc71;
+    margin: 20px 0 10px 20px;
+}
+
+.ranking-card, .collaboration-card {
+    background: #2c3e50;
+    padding: 15px;
+    margin: 10px 20px;
     border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ranking-card .label, .collaboration-card .label {
+    font-weight: bold;
+}
+
+.ranking-card .value, .collaboration-card .value {
+    color: #e74c3c;
+}
+
+.ranking-card .change, .collaboration-card .change {
+    color: #2ecc71;
+}
+
+.ranking-card .target, .collaboration-card .target {
+    font-size: 0.9em;
+    color: #bdc3c7;
+}
+
+.collaboration-card .stats {
+    display: flex;
+    gap: 10px;
+}
+
+.collaboration-card .stats div {
+    background: #34495e;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.contribution-buttons button {
+    background: #27ae60;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contribution-buttons button:hover {
+    background: #219653;
+}
+
+.live-stream, .champions {
+    background: #2c3e50;
+    padding: 15px;
+    margin: 10px 20px;
+    border-radius: 5px;
+}
+
+.live-stream .live-indicator {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.champions select {
+    padding: 5px;
+    margin-top: 5px;
+    background: #34495e;
+    color: #ecf0f1;
+    border: none;
+    border-radius: 3px;
+}
+
+.analytics-card {
+    background: #2c3e50;
+    padding: 15px;
+    margin: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.achievement {
+    background: #27ae60;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    text-align: center;
+    color: #fff;
+}
+
+.briefing {
+    background: #2c3e50;
+    padding: 15px;
+    margin: 10px 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.briefing .close {
+    background: #e74c3c;
+    border: none;
+    padding: 5px 10px;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.contribution-form button {
+    background: #3498db;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contribution-form button:hover {
+    background: #2980b9;
+}
+
+footer {
+    background: #34495e;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer a {
+    color: #ecf0f1;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #3498db;
 }

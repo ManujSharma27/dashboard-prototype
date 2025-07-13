@@ -42,13 +42,1544 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IITR Mission Control</title>
-    <link rel="stylesheet" href="./styles.css">
-    <meta http-equiv="cache-control" content="no-cache">
+    <title>IITR Mission Control - Strategic Excellence Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0f1c;
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: transparent;
+        }
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .header {
+            background: linear-gradient(135deg, rgba(26, 35, 64, 0.95) 0%, rgba(17, 24, 39, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 100;
+        }
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff6b6b, #f06595);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: 0 4px 15px rgba(240, 101, 149, 0.3);
+        }
+        .mission-title {
+            display: flex;
+            flex-direction: column;
+        }
+        .mission-title h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        .mission-subtitle {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .mission-status {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50px;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+        .current-time {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            padding: 0 40px;
+            margin-top: 20px;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+        .nav-tab {
+            padding: 15px 30px;
+            background: transparent;
+            border: none;
+            color: #64748b;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+        .nav-tab:hover {
+            color: #ffffff;
+        }
+        .nav-tab.active {
+            color: #ffffff;
+        }
+        .nav-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #f06595 0%, #ff6b6b 100%);
+            border-radius: 3px 3px 0 0;
+        }
+        .main-content {
+            padding: 30px 40px;
+            min-height: calc(100vh - 200px);
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        .ranking-card, .social-fiber-container, .quick-actions, .department-grid, .activity-feed, .leaderboard, .analytics-section {
+            position: relative;
+            border-radius: 20px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.7) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .ranking-card::before, .social-fiber-container::before, .quick-actions::before, .department-grid::before, .activity-feed::before, .leaderboard::before, .analytics-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(30deg);
+            pointer-events: none;
+            animation: liquidFlow 15s linear infinite;
+        }
+        @keyframes liquidFlow {
+            0% { transform: rotate(30deg) translateX(0); }
+            100% { transform: rotate(30deg) translateX(50%); }
+        }
+        .ranking-card:hover, .quick-actions:hover, .department-grid:hover, .activity-feed:hover, .leaderboard:hover, .analytics-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .ranking-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .ranking-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        .ranking-badge {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .badge-qs {
+            color: #3b82f6;
+        }
+        .badge-nirf {
+            color: #22c55e;
+        }
+        .badge-it {
+            color: #fbbf24;
+        }
+        .ranking-main {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .ranking-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ranking-change {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+        .change-positive {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        .change-negative {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .ranking-target {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+        .ranking-progress {
+            height: 8px;
+            background: rgba(148, 163, 184, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 1s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .fill-qs {
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+        }
+        .fill-nirf {
+            background: linear-gradient(90deg, #22c55e 0%, #4ade80 100%);
+        }
+        .fill-it {
+            background: linear-gradient(90deg, #fbbf24 0%, #fcd34d 100%);
+        }
+        .social-fiber-container {
+            grid-column: span 8;
+            min-height: 400px;
+        }
+        .fiber-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .fiber-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        .fiber-stats {
+            display: flex;
+            gap: 20px;
+        }
+        .fiber-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #64748b;
+        }
+        #networkCanvas {
+            width: 100%;
+            height: 350px;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            border-radius: 15px;
+        }
+        .quick-actions {
+            grid-column: span 4;
+        }
+        .actions-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+        }
+        .action-button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .action-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        .action-button:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%);
+            transform: translateX(5px);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+        }
+        .action-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 1;
+        }
+        .department-grid {
+            grid-column: span 12;
+        }
+        .dept-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 25px;
+        }
+        .dept-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .dept-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .dept-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(30deg);
+            animation: liquidFlow 12s linear infinite;
+        }
+        .dept-card:hover {
+            transform: scale(1.05);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2);
+        }
+        .dept-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 10px;
+        }
+        .dept-score {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .score-high {
+            color: #22c55e;
+        }
+        .score-medium {
+            color: #fbbf24;
+        }
+        .score-low {
+            color: #ef4444;
+        }
+        .dept-trend {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .activity-feed {
+            grid-column: span 6;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .feed-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #ef4444;
+        }
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .feed-item {
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 15px;
+            align-items: start;
+            animation: slideIn 0.5s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feed-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .feed-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        .icon-research {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+        .icon-collab {
+            background: rgba(139, 92, 246, 0.2);
+            color: #8b5cf6;
+        }
+        .icon-achievement {
+            background: rgba(34, 197, 94, 0.2);
+            color: #22c55e;
+        }
+        .feed-content {
+            flex: 1;
+        }
+        .feed-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+        }
+        .feed-description {
+            font-size: 13px;
+            color: #64748b;
+            line-height: 1.4;
+        }
+        .feed-time {
+            font-size: 11px;
+            color: #475569;
+            margin-top: 5px;
+        }
+        .leaderboard {
+            grid-column: span 6;
+        }
+        .leaderboard-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .time-filter {
+            display: flex;
+            gap: 10px;
+        }
+        .filter-btn {
+            padding: 6px 12px;
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: #94a3b8;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 8s linear infinite;
+        }
+        .filter-btn.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #3b82f6;
+        }
+        .leader-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(15, 23, 42, 0.4);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .leader-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        .leader-item:hover {
+            background: rgba(15, 23, 42, 0.6);
+            transform: translateX(5px);
+        }
+        .leader-rank {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            border-radius: 8px;
+            margin-right: 15px;
+            z-index: 1;
+        }
+        .rank-1 {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #000;
+        }
+        .rank-2 {
+            background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+            color: #000;
+        }
+        .rank-3 {
+            background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+            color: #000;
+        }
+        .rank-other {
+            background: rgba(148, 163, 184, 0.1);
+            color: #94a3b8;
+        }
+        .leader-info {
+            flex: 1;
+        }
+        .leader-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 3px;
+        }
+        .leader-dept {
+            font-size: 12px;
+            color: #64748b;
+        }
+        .leader-score {
+            font-size: 18px;
+            font-weight: 700;
+            color: #3b82f6;
+        }
+        .action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(10, 15, 28, 0.95) 0%, rgba(10, 15, 28, 0.8) 100%);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+        }
+        .action-item {
+            padding: 12px 30px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.9) 0%, rgba(139, 92, 246, 0.9) 100%);
+            border: none;
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        .action-item::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 8s linear infinite;
+        }
+        .action-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+        .action-item.secondary {
+            background: rgba(148, 163, 184, 0.1);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+            box-shadow: none;
+        }
+        .action-item.secondary::before {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+        }
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: -400px;
+            width: 350px;
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.95) 0%, rgba(22, 163, 74, 0.95) 100%);
+            backdrop-filter: blur(12px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: right 0.5s ease;
+            z-index: 1000;
+            position: relative;
+            overflow: hidden;
+        }
+        .notification::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        .notification.show {
+            right: 40px;
+        }
+        .notif-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .notif-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            z-index: 1;
+        }
+        .notif-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        .notif-message {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+        }
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 15, 28, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-content {
+            text-align: center;
+        }
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(59, 130, 246, 0.1);
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .loading-text {
+            font-size: 18px;
+            color: #94a3b8;
+            font-weight: 500;
+        }
+        .analytics-section {
+            grid-column: span 12;
+            margin-top: 25px;
+        }
+        .analytics-header {
+            font-size: 24px;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+        }
+        .prediction-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .prediction-card {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .prediction-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(30deg);
+            animation: liquidFlow 12s linear infinite;
+        }
+        .prediction-title {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 10px;
+        }
+        .prediction-value {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .prediction-confidence {
+            font-size: 14px;
+            color: #64748b;
+        }
+        .briefing-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        .briefing-content {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .briefing-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 12s linear infinite;
+        }
+        .briefing-header {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+        .briefing-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .briefing-stat {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .briefing-stat::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        .briefing-stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 5px;
+            z-index: 1;
+            position: relative;
+        }
+        .briefing-stat-label {
+            font-size: 14px;
+            color: #94a3b8;
+            z-index: 1;
+            position: relative;
+        }
+        .contribution-popup {
+            display: none;
+            position: fixed;
+            bottom: 100px;
+            right: 40px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.95) 0%, rgba(59, 130, 246, 0.95) 100%);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            z-index: 1500;
+            width: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        .contribution-popup::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 10s linear infinite;
+        }
+        .popup-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 20px;
+            z-index: 1;
+            position: relative;
+        }
+        .popup-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .popup-option {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .popup-option::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transform: rotate(45deg);
+            animation: liquidFlow 8s linear infinite;
+        }
+        .popup-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+        @media (max-width: 1400px) {
+            .dashboard-grid { grid-template-columns: repeat(12, 1fr); }
+            .ranking-card { grid-column: span 4; }
+            .social-fiber-container { grid-column: span 12; }
+            .quick-actions { grid-column: span 12; }
+        }
+        @media (max-width: 1024px) {
+            .ranking-card { grid-column: span 6; }
+            .activity-feed, .leaderboard { grid-column: span 12; }
+        }
+        @media (max-width: 768px) {
+            .header { padding: 15px 20px; }
+            .logo-section { gap: 10px; }
+            .mission-title h1 { font-size: 20px; }
+            .nav-tabs { padding: 0 20px; overflow-x: auto; }
+            .main-content { padding: 20px; }
+            .ranking-card { grid-column: span 12; }
+            .action-bar { padding: 15px 20px; gap: 10px; }
+            .action-item { padding: 10px 20px; font-size: 14px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>IITR Mission Control</h1>
-    <div class="status">Active</div>
-    <script src="./script.js" defer></script>
+    <div class="stars" id="stars"></div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Initializing Mission Control...</div>
+        </div>
+    </div>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo">IITR</div>
+            <div class="mission-title">
+                <h1>Mission Control</h1>
+                <div class="mission-subtitle">Strategic Excellence Dashboard</div>
+            </div>
+        </div>
+        <div class="mission-status">
+            <div class="status-indicator">
+                <div class="status-dot"></div>
+                <span>Systems Operational</span>
+            </div>
+            <div class="current-time" id="currentTime"></div>
+        </div>
+    </header>
+    <nav class="nav-tabs">
+        <button class="nav-tab active" onclick="switchTab('overview')">Mission Overview</button>
+        <button class="nav-tab" onclick="switchTab('social')">Social Fiber</button>
+        <button class="nav-tab" onclick="switchTab('departments')">Department Matrix</button>
+        <button class="nav-tab" onclick="switchTab('contributions')">Live Contributions</button>
+        <button class="nav-tab" onclick="switchTab('analytics')">Predictive Analytics</button>
+        <button class="nav-tab" onclick="switchTab('briefing')">Daily Briefing</button>
+    </nav>
+    <main class="main-content">
+        <div class="dashboard-grid">
+            <div class="ranking-card">
+                <div class="ranking-header">
+                    <div class="ranking-title">QS World Ranking</div>
+                    <div class="ranking-badge badge-qs">Global</div>
+                </div>
+                <div class="ranking-main">
+                    <div class="ranking-number">#339</div>
+                    <div class="ranking-change change-positive">↑ 12</div>
+                </div>
+                <div class="ranking-target">Target: #220 by 2026</div>
+                <div class="ranking-progress">
+                    <div class="progress-fill fill-qs" style="width: 35%;"></div>
+                </div>
+            </div>
+            <div class="ranking-card">
+                <div class="ranking-header">
+                    <div class="ranking-title">NIRF Ranking</div>
+                    <div class="ranking-badge badge-nirf">National</div>
+                </div>
+                <div class="ranking-main">
+                    <div class="ranking-number">#7</div>
+                    <div class="ranking-change change-positive">↑ 2</div>
+                </div>
+                <div class="ranking-target">Target: #3 by 2026</div>
+                <div class="ranking-progress">
+                    <div class="progress-fill fill-nirf" style="width: 65%;"></div>
+                </div>
+            </div>
+            <div class="ranking-card">
+                <div class="ranking-header">
+                    <div class="ranking-title">India Today</div>
+                    <div class="ranking-badge badge-it">Media</div>
+                </div>
+                <div class="ranking-main">
+                    <div class="ranking-number">#7</div>
+                    <div class="ranking-change change-positive">↑ 1</div>
+                </div>
+                <div class="ranking-target">Target: #4 by 2026</div>
+                <div class="ranking-progress">
+                    <div class="progress-fill fill-it" style="width: 55%;"></div>
+                </div>
+            </div>
+            <div class="social-fiber-container">
+                <div class="fiber-header">
+                    <div class="fiber-title">Inter-Department Collaboration Network</div>
+                    <div class="fiber-stats">
+                        <div class="fiber-stat">
+                            <div class="stat-value">127</div>
+                            <div class="stat-label">Active Links</div>
+                        </div>
+                        <div class="fiber-stat">
+                            <div class="stat-value">23</div>
+                            <div class="stat-label">Departments</div>
+                        </div>
+                        <div class="fiber-stat">
+                            <div class="stat-value">94%</div>
+                            <div class="stat-label">Connectivity</div>
+                        </div>
+                    </div>
+                </div>
+                <canvas id="networkCanvas"></canvas>
+            </div>
+            <div class="quick-actions">
+                <div class="actions-header">Effortless Contributions</div>
+                <button class="action-button" onclick="quickAction('publication')">
+                    <span>📚 Published a Paper</span>
+                    <div class="action-icon">→</div>
+                </button>
+                <button class="action-button" onclick="quickAction('collaboration')">
+                    <span>🤝 Started Collaboration</span>
+                    <div class="action-icon">→</div>
+                </button>
+                <button class="action-button" onclick="quickAction('achievement')">
+                    <span>🏆 Student Achievement</span>
+                    <div class="action-icon">→</div>
+                </button>
+                <button class="action-button" onclick="quickAction('patent')">
+                    <span>💡 Filed Patent/IP</span>
+                    <div class="action-icon">→</div>
+                </button>
+                <button class="action-button" onclick="quickAction('conference')">
+                    <span>🌍 Conference Participation</span>
+                    <div class="action-icon">→</div>
+                </button>
+            </div>
+            <div class="department-grid">
+                <div class="dept-header">Department Performance Matrix</div>
+                <div class="dept-container" id="deptContainer"></div>
+            </div>
+            <div class="activity-feed">
+                <div class="feed-header">
+                    <span>Live Activity Stream</span>
+                    <div class="live-indicator">
+                        <div class="live-dot"></div>
+                        <span>LIVE</span>
+                    </div>
+                </div>
+                <div id="feedContainer"></div>
+            </div>
+            <div class="leaderboard">
+                <div class="leaderboard-header">
+                    <span>Excellence Champions</span>
+                    <div class="time-filter">
+                        <button class="filter-btn active">Today</button>
+                        <button class="filter-btn">Week</button>
+                        <button class="filter-btn">Month</button>
+                    </div>
+                </div>
+                <div id="leaderboardContainer"></div>
+            </div>
+        </div>
+        <div class="analytics-section">
+            <div class="analytics-header">Predictive Analytics & Trajectory</div>
+            <div class="prediction-cards">
+                <div class="prediction-card">
+                    <div class="prediction-title">QS Ranking Prediction (Q3 2025)</div>
+                    <div class="prediction-value">#285</div>
+                    <div class="prediction-confidence">87% confidence</div>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-title">Time to Top 220</div>
+                    <div class="prediction-value">18 months</div>
+                    <div class="prediction-confidence">Based on current velocity</div>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-title">Research Output Growth</div>
+                    <div class="prediction-value">+42%</div>
+                    <div class="prediction-confidence">Year-over-year projection</div>
+                </div>
+                <div class="prediction-card">
+                    <div class="prediction-title">Collaboration Index</div>
+                    <div class="prediction-value">8.7/10</div>
+                    <div class="prediction-confidence">Above global average</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="action-bar">
+        <button class="action-item secondary" onclick="showBriefing()">📊 View Daily Brief</button>
+        <button class="action-item" onclick="contributeNow()">🚀 Contribute Now</button>
+        <button class="action-item secondary" onclick="showAnalytics()">📈 Analytics</button>
+    </div>
+    <div class="notification" id="notification">
+        <div class="notif-header">
+            <div class="notif-icon">✨</div>
+            <div class="notif-title">New Achievement!</div>
+        </div>
+        <div class="notif-message" id="notifMessage">
+            Dr. Sharma's paper just boosted our research score by 0.3 points!
+        </div>
+    </div>
+    <div class="briefing-modal" id="briefingModal">
+        <div class="briefing-content">
+            <div class="briefing-header">Daily Mission Brief - Saturday, July 12</div>
+            <div class="briefing-stats">
+                <div class="briefing-stat">
+                    <div class="briefing-stat-value">23</div>
+                    <div class="briefing-stat-label">New Publications</div>
+                </div>
+                <div class="briefing-stat">
+                    <div class="briefing-stat-value">8</div>
+                    <div class="briefing-stat-label">Collaborations</div>
+                </div>
+                <div class="briefing-stat">
+                    <div class="briefing-stat-value">+0.8</div>
+                    <div class="briefing-stat-label">Ranking Points</div>
+                </div>
+                <div class="briefing-stat">
+                    <div class="briefing-stat-value">94%</div>
+                    <div class="briefing-stat-label">Target Progress</div>
+                </div>
+            </div>
+            <button onclick="closeBriefing()" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 10px 20px; border-radius: 10px; cursor: pointer;">Close Briefing</button>
+        </div>
+    </div>
+    <div class="contribution-popup" id="contributionPopup">
+        <div class="popup-header">What did you achieve today?</div>
+        <div class="popup-options">
+            <div class="popup-option" onclick="selectContribution('paper')">📄 Published/Submitted a paper</div>
+            <div class="popup-option" onclick="selectContribution('collab')">🤝 Started a collaboration</div>
+            <div class="popup-option" onclick="selectContribution('grant')">💰 Received grant/funding</div>
+            <div class="popup-option" onclick="selectContribution('student')">👨‍🎓 Student achievement</div>
+            <div class="popup-option" onclick="selectContribution('other')">✨ Something else amazing</div>
+        </div>
+    </div>
+    <script>
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 150;
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const dateString = now.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('currentTime').textContent = `${dateString} • ${timeString}`;
+        }
+        const departments = [
+            { name: 'Computer Science', score: 94, trend: '+5.2%' },
+            { name: 'Electronics', score: 87, trend: '+3.1%' },
+            { name: 'Mechanical', score: 82, trend: '+2.8%' },
+            { name: 'Civil Engineering', score: 79, trend: '+1.9%' },
+            { name: 'Chemical', score: 76, trend: '+2.3%' },
+            { name: 'Biotechnology', score: 73, trend: '+4.1%' },
+            { name: 'Architecture', score: 71, trend: '+1.5%' },
+            { name: 'Physics', score: 68, trend: '+0.8%' },
+            { name: 'Chemistry', score: 65, trend: '+1.2%' },
+            { name: 'Mathematics', score: 63, trend: '+0.5%' },
+            { name: 'Metallurgical', score: 62, trend: '+2.1%' },
+            { name: 'Hydrology', score: 61, trend: '+1.8%' },
+            { name: 'Earth Sciences', score: 58, trend: '+0.9%' },
+            { name: 'Management Studies', score: 74, trend: '+3.5%' },
+            { name: 'Humanities', score: 66, trend: '+1.7%' },
+            { name: 'Applied Science', score: 69, trend: '+2.2%' },
+            { name: 'Disaster Mitigation', score: 72, trend: '+3.8%' },
+            { name: 'Water Resources', score: 75, trend: '+2.9%' },
+            { name: 'Paper Technology', score: 64, trend: '+1.3%' },
+            { name: 'Polymer Science', score: 67, trend: '+1.9%' },
+            { name: 'Earthquake', score: 77, trend: '+4.2%' },
+            { name: 'Nanotechnology', score: 81, trend: '+5.1%' },
+            { name: 'Transportation', score: 70, trend: '+2.5%' }
+        ];
+        function initializeDepartments() {
+            const container = document.getElementById('deptContainer');
+            container.innerHTML = '';
+            departments.forEach(dept => {
+                const card = document.createElement('div');
+                card.className = 'dept-card';
+                let scoreClass = 'score-high';
+                if (dept.score < 70) scoreClass = 'score-medium';
+                if (dept.score < 60) scoreClass = 'score-low';
+                card.innerHTML = `
+                    <div class="dept-name">${dept.name}</div>
+                    <div class="dept-score ${scoreClass}">${dept.score}</div>
+                    <div class="dept-trend">${dept.trend} this week</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+        const activities = [
+            { type: 'research', title: 'New Research Publication', description: 'Prof. Kumar published in Nature Communications - "AI-driven drug discovery"', time: '2 minutes ago' },
+            { type: 'collab', title: 'International Collaboration', description: 'CSE + MIT joint research project on quantum computing initiated', time: '5 minutes ago' },
+            { type: 'achievement', title: 'Student Achievement', description: 'Team IITR wins Google AI Challenge 2025 - $50,000 prize', time: '12 minutes ago' },
+            { type: 'research', title: 'Patent Filed', description: 'Biotech dept files patent for novel cancer detection method', time: '18 minutes ago' },
+            { type: 'collab', title: 'Industry Partnership', description: 'MoU signed with Microsoft Research India for cloud computing', time: '25 minutes ago' },
+            { type: 'achievement', title: 'Grant Received', description: 'DST approves ₹2.5 Cr grant for renewable energy research', time: '32 minutes ago' },
+            { type: 'research', title: 'Conference Paper', description: '3 papers accepted at ICML 2025 from AI research group', time: '45 minutes ago' },
+            { type: 'collab', title: 'Cross-Department Project', description: 'Civil + CS collaborate on smart city infrastructure project', time: '52 minutes ago' }
+        ];
+        function initializeActivityFeed() {
+            const container = document.getElementById('feedContainer');
+            container.innerHTML = '';
+            activities.forEach(activity => {
+                const item = document.createElement('div');
+                item.className = 'feed-item';
+                const iconClass = `icon-${activity.type}`;
+                const icon = activity.type === 'research' ? '📚' : activity.type === 'collab' ? '🤝' : '🏆';
+                item.innerHTML = `
+                    <div class="feed-icon ${iconClass}">${icon}</div>
+                    <div class="feed-content">
+                        <div class="feed-title">${activity.title}</div>
+                        <div class="feed-description">${activity.description}</div>
+                        <div class="feed-time">${activity.time}</div>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+        const leaders = [
+            { rank: 1, name: 'Dr. Priya Sharma', dept: 'Computer Science', score: 342 },
+            { rank: 2, name: 'Prof. Raj Kumar', dept: 'Electronics', score: 298 },
+            { rank: 3, name: 'Dr. Anita Singh', dept: 'Biotechnology', score: 276 },
+            { rank: 4, name: 'Prof. K. Verma', dept: 'Mechanical', score: 251 },
+            { rank: 5, name: 'Dr. S. Patel', dept: 'Civil Engineering', score: 234 },
+            { rank: 6, name: 'Prof. M. Gupta', dept: 'Chemical', score: 218 },
+            { rank: 7, name: 'Dr. R. Mehta', dept: 'Physics', score: 205 },
+            { rank: 8, name: 'Prof. A. Joshi', dept: 'Architecture', score: 198 }
+        ];
+        function initializeLeaderboard() {
+            const container = document.getElementById('leaderboardContainer');
+            container.innerHTML = '';
+            leaders.forEach(leader => {
+                const item = document.createElement('div');
+                item.className = 'leader-item';
+                const rankClass = leader.rank <= 3 ? `rank-${leader.rank}` : 'rank-other';
+                item.innerHTML = `
+                    <div class="leader-rank ${rankClass}">${leader.rank}</div>
+                    <div class="leader-info">
+                        <div class="leader-name">${leader.name}</div>
+                        <div class="leader-dept">${leader.dept}</div>
+                    </div>
+                    <div class="leader-score">${leader.score}</div>
+                `;
+                container.appendChild(item);
+            });
+        }
+        function initializeNetwork() {
+            const canvas = document.getElementById('networkCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+            const nodes = [];
+            const nodeCount = 23;
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = Math.min(canvas.width, canvas.height) * 0.35;
+            const clusters = [
+                { name: 'Engineering', color: 'rgba(59, 130, 246, 0.8)', x: centerX - 100, y: centerY - 50 },
+                { name: 'Sciences', color: 'rgba(139, 92, 246, 0.8)', x: centerX + 100, y: centerY - 50 },
+                { name: 'Applied', color: 'rgba(34, 197, 94, 0.8)', x: centerX, y: centerY + 80 }
+            ];
+            for (let i = 0; i < nodeCount; i++) {
+                const angle = (i / nodeCount) * Math.PI * 2;
+                const clusterIndex = Math.floor(i / (nodeCount / 3));
+                const cluster = clusters[clusterIndex % clusters.length];
+                const x = cluster.x + Math.cos(angle) * radius * 0.4;
+                const y = cluster.y + Math.sin(angle) * radius * 0.4;
+                nodes.push({ x, y, vx: 0, vy: 0, cluster: clusterIndex, connections: [] });
+            }
+            for (let i = 0; i < nodes.length; i++) {
+                const numConnections = Math.floor(Math.random() * 3) + 2;
+                for (let j = 0; j < numConnections; j++) {
+                    const target = Math.floor(Math.random() * nodes.length);
+                    if (target !== i && !nodes[i].connections.includes(target)) {
+                        nodes[i].connections.push(target);
+                    }
+                }
+            }
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                nodes.forEach((node, i) => {
+                    node.connections.forEach(targetIndex => {
+                        const target = nodes[targetIndex];
+                        const gradient = ctx.createLinearGradient(node.x, node.y, target.x, target.y);
+                        gradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+                        gradient.addColorStop(1, 'rgba(139, 92, 246, 0.2)');
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(node.x, node.y);
+                        ctx.lineTo(target.x, target.y);
+                        ctx.stroke();
+                    });
+                });
+                nodes.forEach((node, i) => {
+                    node.vx += (Math.random() - 0.5) * 0.1;
+                    node.vy += (Math.random() - 0.5) * 0.1;
+                    node.vx *= 0.98;
+                    node.vy *= 0.98;
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    const cluster = clusters[node.cluster % clusters.length];
+                    node.x += (cluster.x - node.x) * 0.001;
+                    node.y += (cluster.y - node.y) * 0.001;
+                    const glowGradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 20);
+                    glowGradient.addColorStop(0, cluster.color);
+                    glowGradient.addColorStop(1, 'transparent');
+                    ctx.fillStyle = glowGradient;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = cluster.color;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, 6, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                ctx.font = '14px Arial';
+                ctx.fillStyle = 'rgba(148, 163, 184, 0.8)';
+                clusters.forEach(cluster => {
+                    ctx.fillText(cluster.name, cluster.x - 30, cluster.y - radius * 0.5);
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        function switchTab(tabName) {
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            showNotification(`Switched to ${tabName} view`);
+        }
+        function quickAction(type) {
+            const messages = {
+                publication: 'Paper detected! Confirm: "Machine Learning in Healthcare" - Nature?',
+                collaboration: 'New collaboration with Stanford confirmed!',
+                achievement: 'Student achievement recorded successfully!',
+                patent: 'Patent application #2025-IITR-0234 logged!',
+                conference: 'ICML 2025 participation recorded!'
+            };
+            showNotification(messages[type] || 'Action recorded!');
+            setTimeout(() => {
+                updateRankingProgress();
+                addNewActivity(type);
+            }, 1000);
+        }
+        function addNewActivity(type) {
+            const newActivity = {
+                research: { type: 'research', title: 'New Contribution Added', description: 'Your research contribution has been recorded', time: 'Just now' },
+                collaboration: { type: 'collab', title: 'Collaboration Initiated', description: 'New partnership logged in the system', time: 'Just now' },
+                achievement: { type: 'achievement', title: 'Achievement Recorded', description: 'Student success added to institutional records', time: 'Just now' }
+            };
+            const activity = newActivity[type] || newActivity.research;
+            activities.unshift(activity);
+            initializeActivityFeed();
+        }
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const messageEl = document.getElementById('notifMessage');
+            messageEl.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        }
+        function updateRankingProgress() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {
+                const currentWidth = parseFloat(bar.style.width);
+                const newWidth = Math.min(currentWidth + Math.random() * 0.5, 100);
+                bar.style.width = newWidth + '%';
+            });
+        }
+        function showBriefing() {
+            document.getElementById('briefingModal').style.display = 'flex';
+        }
+        function closeBriefing() {
+            document.getElementById('briefingModal').style.display = 'none';
+        }
+        function contributeNow() {
+            const popup = document.getElementById('contributionPopup');
+            popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        }
+        function selectContribution(type) {
+            document.getElementById('contributionPopup').style.display = 'none';
+            quickAction(type);
+        }
+        function showAnalytics() {
+            showNotification('Predictive analytics: On track to reach #250 by Q3 2025!');
+            window.scrollTo({ top: document.querySelector('.analytics-section').offsetTop - 100, behavior: 'smooth' });
+        }
+        function hideLoading() {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.add('hidden');
+        }
+        function simulateRealTimeUpdates() {
+            setInterval(() => {
+                const rankings = document.querySelectorAll('.ranking-number');
+                const randomIndex = Math.floor(Math.random() * rankings.length);
+                const currentRank = parseInt(rankings[randomIndex].textContent.replace('#', ''));
+                if (Math.random() > 0.7) {
+                    const improvement = Math.floor(Math.random() * 3) + 1;
+                    rankings[randomIndex].textContent = `#${currentRank - improvement}`;
+                    showNotification(`Ranking improved! Moving up ${improvement} positions!`);
+                    updateRankingProgress();
+                }
+            }, 45000);
+            setInterval(() => {
+                const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+                showNotification(`New activity: ${randomActivity.title}`);
+            }, 30000);
+            setInterval(() => {
+                const randomDept = Math.floor(Math.random() * departments.length);
+                departments[randomDept].score += Math.floor(Math.random() * 3);
+                departments[randomDept].trend = `+${(Math.random() * 5).toFixed(1)}%`;
+                initializeDepartments();
+            }, 60000);
+        }
+        function initialize() {
+            createStars();
+            updateTime();
+            setInterval(updateTime, 1000);
+            initializeDepartments();
+            initializeActivityFeed();
+            initializeLeaderboard();
+            initializeNetwork();
+            setTimeout(hideLoading, 1500);
+            simulateRealTimeUpdates();
+        }
+        window.addEventListener('load', initialize);
+        window.addEventListener('click', (e) => {
+            if (e.target === document.getElementById('briefingModal')) {
+                closeBriefing();
+            }
+        });
+    </script>
 </body>
 </html>
