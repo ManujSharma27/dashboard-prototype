@@ -1,9 +1,9 @@
 
-/* Body background similar to the reference image with subtle gradients and glass-like feel */
+/* Glass-like background with frosted effect */
 body {
     font-family: 'Arial', sans-serif;
-    background: radial-gradient(circle at 20% 30%, #e0e0e0 0%, #fafafa 70%), 
-                radial-gradient(circle at 80% 70%, #fafafa 0%, #e0e0e0 60%);
+    background: radial-gradient(circle at 20% 30%, #f1f1f1 0%, #ffffff 70%), 
+                radial-gradient(circle at 80% 70%, #ffffff 0%, #f1f1f1 60%);
     background-blend-mode: overlay;
     background-size: cover;
     color: #333;
@@ -18,22 +18,22 @@ body {
     100% { background-position: 30px 30px; }
 }
 
-/* Applying glass-like transparency with rounded corners and soft shadowing */
+/* Dashboard container and glass effect */
 .dashboard-container {
     display: flex;
     height: 100vh;
     opacity: 0;
     transition: opacity 0.5s ease-in;
-    border-radius: 15px;
-    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(15px); /* Glass effect */
+    backdrop-filter: blur(10px); /* Glass effect */
+    border-radius: 20px;  /* Rounded corners */
+    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
 }
 
 .dashboard-container.active {
     opacity: 1;
 }
 
-/* Sidebar styling */
+/* Sidebar with a frosted glass look */
 .sidebar {
     width: 250px;
     background: rgba(26, 42, 68, 0.7);
@@ -43,8 +43,8 @@ body {
     position: fixed;
     height: 100%;
     z-index: 100;
-    border-radius: 10px;
     transition: transform 0.3s;
+    border-radius: 20px;  /* Rounded corners */
 }
 
 .sidebar .logo h1 {
@@ -53,7 +53,6 @@ body {
     color: #4a90e2;
     text-transform: uppercase;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px #4a90e2;
 }
 
 .sidebar nav a {
@@ -63,48 +62,81 @@ body {
     padding: 15px 25px;
     font-size: 1.2em;
     transition: all 0.3s;
-    border-radius: 10px;
+    border-radius: 12px; /* Rounded corners */
 }
 
 .sidebar nav a:hover {
     color: #76b6e2;
     background: rgba(10, 15, 26, 0.5);
     padding-left: 30px;
-    text-shadow: 0 0 15px #76b6e2;
-    border-radius: 10px;
 }
 
-/* Main content adjustments for rounded edges and glass effect */
+/* Main content area with a soft glass effect */
 .main-content {
     margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
     overflow-y: auto;
-    border-radius: 15px;
-    backdrop-filter: blur(20px); /* Apply glass effect */
+    backdrop-filter: blur(20px); /* Glass effect */
+    border-radius: 15px;  /* Rounded corners */
     box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Adjusting header to match the glassy aesthetic */
+/* Header with soft frosted background */
 header {
     background: rgba(26, 42, 68, 0.6);
     padding: 15px 30px;
     border-radius: 15px;
     backdrop-filter: blur(15px);
     margin-bottom: 20px;
-    box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.3);
 }
 
-/* Styling for rank cards with rounded edges, soft shadow, and glass effect */
-.rank-card, .collab-card, .live-box, .champ-box {
-    background: rgba(10, 15, 26, 0.4);
-    backdrop-filter: blur(10px);
-    box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.1), 0 5px 15px rgba(0, 0, 0, 0.3);
+header h2 {
+    margin: 0;
+    font-size: 2em;
+    color: #76b6e2;
+}
+
+/* Rank cards with rounded corners and glass effect */
+.rank-card {
+    background: rgba(10, 15, 26, 0.3);
     padding: 15px;
-    border-radius: 12px; /* Rounded corners */
+    border-radius: 15px;  /* Rounded corners */
+    text-align: center;
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.1), 0 5px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
 }
 
-/* Additional adjustments for buttons, links, and content sections */
+.rank-card:hover {
+    transform: translateY(-5px);
+}
+
+.rank-card .label {
+    font-size: 1.2em;
+    color: #b3cde0;
+}
+
+.rank-card .value {
+    font-size: 1.8em;
+    color: #e57373;
+    font-weight: 600;
+}
+
+.rank-card .trend {
+    font-size: 1.1em;
+    color: #81c784;
+}
+
+.rank-card canvas {
+    margin-top: 10px;
+    width: 100% !important;
+    height: 100px !important;
+    background: rgba(10, 15, 26, 0.5);
+    border-radius: 5px;
+}
+
+/* Buttons with rounded corners and smooth hover effects */
 button, a {
     border-radius: 10px;
     transition: all 0.3s ease;
