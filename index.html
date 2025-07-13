@@ -42,13 +42,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IITR Test</title>
+    <title>IITR Mission Control</title>
     <link rel="stylesheet" href="./styles.css">
     <meta http-equiv="cache-control" content="no-cache">
 </head>
 <body>
-    <h1>IITR Mission Control</h1>
-    <div class="test-box">Loading...</div>
+    <header>
+        <h1>IITR Mission Control</h1>
+        <div class="mission-status">Status: Launch Prep</div>
+    </header>
+    <main>
+        <section class="control-panel">
+            <div class="metric">Altitude: 0m</div>
+            <div class="metric">Speed: 0km/h</div>
+        </section>
+    </main>
     <script src="./script.js" defer></script>
 </body>
 </html>

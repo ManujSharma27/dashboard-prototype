@@ -1,15 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const box = document.querySelector('.test-box');
-    if (box) {
-        box.textContent = 'JS Loaded!';
-        console.log('Script running at ' + new Date().toLocaleTimeString());
+    const metrics = document.querySelectorAll('.metric');
+    if (metrics.length > 0) {
+        setInterval(() => {
+            metrics[0].textContent = `Altitude: ${Math.floor(Math.random() * 1000)}m`;
+            metrics[1].textContent = `Speed: ${Math.floor(Math.random() * 500)}km/h`;
+            console.log('Dashboard updated');
+        }, 2000);
     } else {
-        console.log('Box not found at ' + new Date().toLocaleTimeString());
-    }
-    const cssLink = document.querySelector('link[href="./styles.css"]');
-    if (cssLink && cssLink.sheet) {
-        console.log('CSS loaded at ' + new Date().toLocaleTimeString());
-    } else {
-        console.log('CSS not loaded at ' + new Date().toLocaleTimeString());
+        console.log('Metrics not found');
     }
 });

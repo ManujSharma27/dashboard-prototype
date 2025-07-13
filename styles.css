@@ -1,6 +1,28 @@
-.test-box {
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    margin: 20px;
+body {
+    font-family: 'Courier New', monospace;
+    background: #0d1b2a;
+    color: #e9d8a6;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background: #1b263b;
+    padding: 20px;
+    text-align: center;
+}
+.mission-status {
+    font-size: 1.5em;
+    color: #e76f51;
+}
+.control-panel {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+.metric {
+    background: #415a77;
+    padding: 10px 20px;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
 }
