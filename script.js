@@ -31,14 +31,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 tension: 0.2,
                 pointStyle: 'circle',
                 pointRadius: 5,
-                pointHoverRadius: 7
+                pointHoverRadius: 7,
+                borderWidth: 2
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
-            plugins: { legend: { labels: { color: '#b3cde0' } } }
+            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 12 } } } }
         }
     });
 
@@ -54,14 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 tension: 0.2,
                 pointStyle: 'circle',
                 pointRadius: 5,
-                pointHoverRadius: 7
+                pointHoverRadius: 7,
+                borderWidth: 2
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
-            plugins: { legend: { labels: { color: '#b3cde0' } } }
+            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 12 } } } }
         }
     });
 
@@ -77,14 +79,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 tension: 0.2,
                 pointStyle: 'circle',
                 pointRadius: 5,
-                pointHoverRadius: 7
+                pointHoverRadius: 7,
+                borderWidth: 2
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
-            plugins: { legend: { labels: { color: '#b3cde0' } } }
+            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 12 } } } }
         }
     });
 
@@ -95,22 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: 'Current',
                 data: [339, 7, 7],
-                backgroundColor: '#e57373',
+                backgroundColor: 'rgba(229, 115, 115, 0.8)',
                 borderColor: '#fff',
-                borderWidth: 1
+                borderWidth: 1,
+                borderRadius: 5
             }, {
                 label: 'Target',
                 data: [220, 3, 4],
-                backgroundColor: '#81c784',
+                backgroundColor: 'rgba(129, 199, 132, 0.8)',
                 borderColor: '#fff',
-                borderWidth: 1
+                borderWidth: 1,
+                borderRadius: 5
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
-            plugins: { legend: { labels: { color: '#b3cde0' } } }
+            plugins: { legend: { labels: { color: '#b3cde0', font: { size: 12 } } } }
         }
     });
 
@@ -152,8 +157,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const briefBox = document.querySelector('.brief-box');
-        if (briefBox && !briefBox.style.display) {
+        if (briefBox && briefBox.style.display !== 'flex') {
             briefBox.style.display = 'flex';
+            briefBox.style.opacity = '0';
+            setTimeout(() => briefBox.style.opacity = '1', 10);
         }
         const closeBtn = document.querySelector('.close-btn');
         if (closeBtn) {

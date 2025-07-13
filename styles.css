@@ -1,6 +1,8 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #0f1c2c, #1a3c5e);
+    background: radial-gradient(circle, #0a0f1a 0%, #1a2a44 50%, #0a0f1a 100%), 
+                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ccircle cx="50" cy="50" r="1" fill="%23fff" opacity="0.3"/%3E%3Ccircle cx="20" cy="30" r="0.5" fill="%23fff" opacity="0.5"/%3E%3Ccircle cx="80" cy="70" r="0.7" fill="%23fff" opacity="0.4"/%3E%3C/svg%3E');
+    background-size: cover;
     color: #e0e0e0;
     margin: 0;
     padding: 0;
@@ -13,7 +15,7 @@ body {
     padding: 20px;
     color: #a3bffa;
     font-size: 1.5em;
-    background: rgba(26, 60, 94, 0.9);
+    background: rgba(10, 15, 26, 0.9);
     position: fixed;
     top: 0;
     left: 0;
@@ -32,11 +34,12 @@ body {
 }
 
 header {
-    background: #1a3c5e;
+    background: rgba(26, 42, 68, 0.9);
     padding: 20px 30px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     border-bottom: 3px solid #4a90e2;
+    backdrop-filter: blur(5px);
 }
 
 header h1 {
@@ -44,12 +47,14 @@ header h1 {
     font-size: 3em;
     color: #4a90e2;
     text-transform: uppercase;
+    text-shadow: 0 0 10px #4a90e2;
 }
 
 .subheader {
     font-size: 1.8em;
     color: #b3cde0;
     margin-top: 5px;
+    text-shadow: 0 0 5px #b3cde0;
 }
 
 .ticker {
@@ -58,11 +63,12 @@ header h1 {
     white-space: nowrap;
     overflow: hidden;
     animation: ticker 18s infinite linear;
-    background: rgba(26, 60, 94, 0.8);
+    background: rgba(26, 42, 68, 0.7);
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 10px;
     margin-top: 10px;
-    box-shadow: 0 2px 5px rgba(244, 208, 63, 0.3);
+    box-shadow: 0 2px 10px rgba(244, 208, 63, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 @keyframes ticker {
@@ -71,11 +77,12 @@ header h1 {
 }
 
 nav {
-    background: #1a3c5e;
+    background: rgba(26, 42, 68, 0.9);
     padding: 15px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     border-bottom: 3px solid #4a90e2;
+    backdrop-filter: blur(5px);
 }
 
 nav a {
@@ -88,23 +95,24 @@ nav a {
 
 nav a:hover {
     color: #76b6e2;
-    text-shadow: 0 0 10px #76b6e2;
+    text-shadow: 0 0 15px #76b6e2;
 }
 
 .hero-section {
     padding: 25px;
-    background: rgba(26, 60, 94, 0.95);
-    border-radius: 10px;
+    background: rgba(26, 42, 68, 0.95);
+    border-radius: 15px;
     margin: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
     border: 3px solid #4a90e2;
+    backdrop-filter: blur(10px);
 }
 
 .section-title {
     font-size: 2em;
     color: #76b6e2;
     margin: 20px 0 15px 25px;
-    text-shadow: 0 0 5px #76b6e2;
+    text-shadow: 0 0 10px #76b6e2;
 }
 
 .hero-grid {
@@ -115,16 +123,17 @@ nav a:hover {
 }
 
 .rank-card {
-    background: linear-gradient(135deg, #1a3c5e, #0f1c2c);
+    background: linear-gradient(135deg, rgba(26, 42, 68, 0.9), rgba(10, 15, 26, 0.9));
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 3px solid #4a90e2;
     transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
 }
 
 .rank-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px #4a90e2;
+    box-shadow: 0 0 25px #4a90e2;
 }
 
 .rank-card .label {
@@ -148,35 +157,39 @@ nav a:hover {
     margin-top: 15px;
     width: 100% !important;
     height: 120px !important;
-    background: rgba(15, 28, 44, 0.9);
-    border-radius: 5px;
-    border: 1px solid #4a90e2;
+    background: rgba(10, 15, 26, 0.9);
+    border-radius: 10px;
+    border: 2px solid #4a90e2;
+    box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
 .compare-chart {
     margin: 25px 0;
     padding: 0 25px;
-    background: rgba(26, 60, 94, 0.95);
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    background: rgba(26, 42, 68, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
     border: 3px solid #4a90e2;
+    backdrop-filter: blur(10px);
 }
 
 .compare-chart canvas {
     width: 100% !important;
     height: 250px !important;
-    background: rgba(15, 28, 44, 0.9);
-    border-radius: 5px;
-    border: 1px solid #4a90e2;
+    background: rgba(10, 15, 26, 0.9);
+    border-radius: 10px;
+    border: 2px solid #4a90e2;
+    box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.3);
 }
 
 .support-section {
     padding: 25px;
-    background: rgba(26, 60, 94, 0.95);
-    border-radius: 10px;
+    background: rgba(26, 42, 68, 0.95);
+    border-radius: 15px;
     margin: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
     border: 3px solid #4a90e2;
+    backdrop-filter: blur(10px);
 }
 
 .collab-card {
@@ -186,21 +199,23 @@ nav a:hover {
 }
 
 .collab-card .stat {
-    background: rgba(15, 28, 44, 0.9);
+    background: rgba(10, 15, 26, 0.9);
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 1.1em;
     color: #b3cde0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .expand-section {
     padding: 25px;
-    background: rgba(26, 60, 94, 0.95);
-    border-radius: 10px;
+    background: rgba(26, 42, 68, 0.95);
+    border-radius: 15px;
     margin: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
     border: 3px solid #4a90e2;
+    backdrop-filter: blur(10px);
 }
 
 .action-buttons button {
@@ -209,39 +224,46 @@ nav a:hover {
     padding: 12px 25px;
     margin: 5px;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(129, 199, 132, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .action-buttons button:hover {
     background: #66bb6a;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(102, 187, 106, 0.5);
+    box-shadow: 0 6px 20px rgba(102, 187, 106, 0.7);
 }
 
 .live-box, .champ-box {
     margin: 15px 0;
     padding: 15px;
-    background: rgba(15, 28, 44, 0.9);
-    border-radius: 5px;
+    background: rgba(10, 15, 26, 0.9);
+    border-radius: 10px;
     border: 2px solid #4a90e2;
+    backdrop-filter: blur(5px);
 }
 
 .live-tag {
     color: #e57373;
     font-weight: bold;
     font-size: 1.2em;
+    text-shadow: 0 0 10px #e57373;
 }
 
 .champ-box select {
     padding: 8px;
     margin-top: 10px;
-    background: rgba(15, 28, 44, 0.9);
+    background: rgba(10, 15, 26, 0.9);
     color: #b3cde0;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
+    font-size: 1em;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .insight-card {
@@ -254,25 +276,27 @@ nav a:hover {
 .insight-card div {
     flex: 1;
     min-width: 220px;
-    background: rgba(15, 28, 44, 0.9);
+    background: rgba(10, 15, 26, 0.9);
     padding: 12px;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #b3cde0;
     font-size: 1.1em;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
 }
 
 .alert-box {
     background: #81c784;
     padding: 15px 25px;
     margin: 20px;
-    border-radius: 10px;
+    border-radius: 15px;
     text-align: center;
     color: #fff;
     font-size: 1.2em;
     border: 3px solid #f4d03f;
-    box-shadow: 0 0 15px rgba(244, 208, 63, 0.7);
+    box-shadow: 0 0 20px rgba(244, 208, 63, 0.7);
     animation: pulse 1.5s infinite;
+    backdrop-filter: blur(5px);
 }
 
 @keyframes pulse {
@@ -282,14 +306,36 @@ nav a:hover {
 }
 
 .brief-box {
-    background: rgba(26, 60, 94, 0.95);
+    background: rgba(10, 15, 26, 0.9);
     padding: 20px;
     margin: 15px 0;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 3px solid #4a90e2;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.3s;
+}
+
+.brief-box h4 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #76b6e2;
+}
+
+.brief-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.brief-stats div {
+    background: rgba(26, 42, 68, 0.9);
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #b3cde0;
+    font-size: 1em;
+    backdrop-filter: blur(5px);
 }
 
 .brief-box .close-btn {
@@ -297,9 +343,11 @@ nav a:hover {
     border: none;
     padding: 8px 15px;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s;
+    font-size: 1em;
+    backdrop-filter: blur(5px);
 }
 
 .brief-box .close-btn:hover {
@@ -309,11 +357,12 @@ nav a:hover {
 
 .form-section {
     padding: 25px;
-    background: rgba(26, 60, 94, 0.95);
-    border-radius: 10px;
+    background: rgba(26, 42, 68, 0.95);
+    border-radius: 15px;
     margin: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
     border: 3px solid #4a90e2;
+    backdrop-filter: blur(10px);
 }
 
 .form-buttons button {
@@ -322,24 +371,27 @@ nav a:hover {
     padding: 12px 25px;
     margin: 5px;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s;
     font-size: 1.1em;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.5);
+    backdrop-filter: blur(5px);
 }
 
 .form-buttons button:hover {
     background: #357abd;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.5);
+    box-shadow: 0 6px 20px rgba(53, 122, 189, 0.7);
 }
 
 footer {
-    background: #1a3c5e;
+    background: rgba(26, 42, 68, 0.9);
     padding: 15px;
     text-align: center;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.6);
     border-top: 3px solid #4a90e2;
+    backdrop-filter: blur(5px);
 }
 
 footer a {
@@ -352,7 +404,7 @@ footer a {
 
 footer a:hover {
     color: #76b6e2;
-    text-shadow: 0 0 10px #76b6e2;
+    text-shadow: 0 0 15px #76b6e2;
 }
 
 @media (max-width: 768px) {
@@ -375,5 +427,8 @@ footer a:hover {
     }
     header h1 {
         font-size: 2.5em;
+    }
+    .brief-stats {
+        flex-direction: column;
     }
 }
