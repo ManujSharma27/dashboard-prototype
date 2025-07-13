@@ -1,12 +1,12 @@
 
+/* Body background similar to the reference image with subtle gradients and glass-like feel */
 body {
     font-family: 'Arial', sans-serif;
-    background: radial-gradient(circle at 20% 30%, #0a0f1a 0%, #1a2a44 40%, #0a0f1a 70%), 
-                radial-gradient(circle at 80% 70%, #1a2a44 0%, #0a0f1a 60%), 
-                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Ccircle cx="10" cy="20" r="0.5" fill="%23fff" opacity="0.2"/%3E%3Ccircle cx="30" cy="50" r="0.7" fill="%23fff" opacity="0.4"/%3E%3Ccircle cx="70" cy="80" r="0.4" fill="%23fff" opacity="0.3"/%3E%3Ccircle cx="90" cy="30" r="0.6" fill="%23fff" opacity="0.5"/%3E%3C/svg%3E');
+    background: radial-gradient(circle at 20% 30%, #e0e0e0 0%, #fafafa 70%), 
+                radial-gradient(circle at 80% 70%, #fafafa 0%, #e0e0e0 60%);
     background-blend-mode: overlay;
     background-size: cover;
-    color: #e0e0e0;
+    color: #333;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -18,49 +18,32 @@ body {
     100% { background-position: 30px 30px; }
 }
 
-.loading {
-    text-align: center;
-    padding: 20px;
-    color: #a3bffa;
-    font-size: 1.5em;
-    background: rgba(10, 15, 26, 0.9);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: fadeIn 1s;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
+/* Applying glass-like transparency with rounded corners and soft shadowing */
 .dashboard-container {
     display: flex;
     height: 100vh;
     opacity: 0;
     transition: opacity 0.5s ease-in;
+    border-radius: 15px;
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px); /* Glass effect */
 }
 
 .dashboard-container.active {
     opacity: 1;
 }
 
+/* Sidebar styling */
 .sidebar {
     width: 250px;
     background: rgba(26, 42, 68, 0.7);
     padding: 20px 0;
     box-shadow: 5px 0 15px rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     position: fixed;
     height: 100%;
     z-index: 100;
+    border-radius: 10px;
     transition: transform 0.3s;
 }
 
@@ -80,6 +63,7 @@ body {
     padding: 15px 25px;
     font-size: 1.2em;
     transition: all 0.3s;
+    border-radius: 10px;
 }
 
 .sidebar nav a:hover {
@@ -87,15 +71,21 @@ body {
     background: rgba(10, 15, 26, 0.5);
     padding-left: 30px;
     text-shadow: 0 0 15px #76b6e2;
+    border-radius: 10px;
 }
 
+/* Main content adjustments for rounded edges and glass effect */
 .main-content {
     margin-left: 250px;
     padding: 20px;
     width: calc(100% - 250px);
     overflow-y: auto;
+    border-radius: 15px;
+    backdrop-filter: blur(20px); /* Apply glass effect */
+    box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Adjusting header to match the glassy aesthetic */
 header {
     background: rgba(26, 42, 68, 0.6);
     padding: 15px 30px;
@@ -105,20 +95,33 @@ header {
     box-shadow: inset 0 0 20px rgba(74, 144, 226, 0.3);
 }
 
-header h2 {
-    margin: 0;
-    font-size: 2em;
-    color: #76b6e2;
-    text-shadow: 0 0 10px #76b6e2;
-}
-
-/* Style adjustments for the dashboard items */
+/* Styling for rank cards with rounded edges, soft shadow, and glass effect */
 .rank-card, .collab-card, .live-box, .champ-box {
-    background: rgba(10, 15, 26, 0.5);
+    background: rgba(10, 15, 26, 0.4);
     backdrop-filter: blur(10px);
     box-shadow: inset 0 0 10px rgba(74, 144, 226, 0.1), 0 5px 15px rgba(0, 0, 0, 0.3);
     padding: 15px;
-    border-radius: 10px;
+    border-radius: 12px; /* Rounded corners */
 }
 
-/* Continue rest of the code structure like charts, cards, buttons etc. */
+/* Additional adjustments for buttons, links, and content sections */
+button, a {
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+button:hover, a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.content-section {
+    background: rgba(26, 42, 68, 0.4);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    box-shadow: inset 0 0 30px rgba(74, 144, 226, 0.2), 0 5px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+}
+
+/* Other minor updates for better UX */
