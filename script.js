@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 loading.style.display = 'none';
                 dashboard.classList.add('active');
             }, 500);
-        }, 2000);
+        }, 1500); // Reduced from 2000 to 1500ms
     }
 
     const sidebar = document.querySelector('.sidebar');
