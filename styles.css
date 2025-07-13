@@ -12,73 +12,158 @@ header {
     padding: 10px 20px;
     text-align: center;
     position: relative;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 header h1 {
     margin: 0;
-    font-size: 2em;
+    font-size: 2.5em;
     color: #3498db;
 }
 
-header .subheader {
-    font-size: 1.2em;
+.subheader {
+    font-size: 1.5em;
     color: #ecf0f1;
 }
 
-.loading {
-    text-align: center;
-    padding: 20px;
-    color: #7f8c8d;
+.ticker {
+    font-size: 1.2em;
+    color: #f1c40f;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: ticker 15s infinite linear;
+    background: #34495e;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
 }
 
 nav {
     background: #34495e;
     padding: 10px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 nav a {
     color: #ecf0f1;
     text-decoration: none;
     margin: 0 15px;
+    font-size: 1.1em;
     font-weight: bold;
+    transition: color 0.3s;
 }
 
 nav a:hover {
     color: #3498db;
 }
 
+.hero-section {
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 5px;
+    margin: 10px;
+}
+
 .section-title {
-    font-size: 1.5em;
+    font-size: 1.8em;
     color: #2ecc71;
     margin: 20px 0 10px 20px;
 }
 
-.ranking-card, .collaboration-card {
+.hero-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 10px;
+}
+
+.ranking-card {
     background: #2c3e50;
     padding: 15px;
-    margin: 10px 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 2px solid #3498db;
+    transition: transform 0.3s;
+}
+
+.ranking-card:hover {
+    transform: scale(1.02);
+}
+
+.ranking-card .label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+.ranking-card .value {
+    font-size: 1.5em;
+    color: #e74c3c;
+}
+
+.ranking-card .change {
+    font-size: 1.1em;
+    color: #2ecc71;
+}
+
+.ranking-card .target {
+    font-size: 1em;
+    color: #bdc3c7;
+}
+
+.ranking-card canvas {
+    margin-top: 10px;
+    width: 100% !important;
+    height: 100px !important;
+    background: #34495e;
+    border-radius: 3px;
+}
+
+.comparison-chart {
+    margin: 20px 0;
+    padding: 0 20px;
+    background: #2c3e50;
+    border-radius: 5px;
+}
+
+.comparison-chart canvas {
+    width: 100% !important;
+    height: 200px !important;
+    background: #34495e;
+    border-radius: 3px;
+}
+
+.supporting-section {
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.collaboration-card {
+    background: #2c3e50;
+    padding: 15px;
+    margin: 10px 0;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border: 2px solid #3498db;
 }
 
-.ranking-card .label, .collaboration-card .label {
+.collaboration-card .label {
     font-weight: bold;
-}
-
-.ranking-card .value, .collaboration-card .value {
-    color: #e74c3c;
-}
-
-.ranking-card .change, .collaboration-card .change {
-    color: #2ecc71;
-}
-
-.ranking-card .target, .collaboration-card .target {
-    font-size: 0.9em;
-    color: #bdc3c7;
+    font-size: 1.2em;
+    color: #ecf0f1;
 }
 
 .collaboration-card .stats {
@@ -90,6 +175,14 @@ nav a:hover {
     background: #34495e;
     padding: 5px 10px;
     border-radius: 3px;
+    color: #e0e0e0;
+}
+
+.expandable-section {
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 5px;
+    margin: 10px;
 }
 
 .contribution-buttons button {
@@ -100,6 +193,8 @@ nav a:hover {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
 }
 
 .contribution-buttons button:hover {
@@ -109,8 +204,9 @@ nav a:hover {
 .live-stream, .champions {
     background: #2c3e50;
     padding: 15px;
-    margin: 10px 20px;
+    margin: 10px 0;
     border-radius: 5px;
+    border: 2px solid #3498db;
 }
 
 .live-stream .live-indicator {
@@ -130,10 +226,20 @@ nav a:hover {
 .analytics-card {
     background: #2c3e50;
     padding: 15px;
-    margin: 10px 20px;
+    margin: 10px 0;
     border-radius: 5px;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border: 2px solid #3498db;
+}
+
+.analytics-card div {
+    flex: 1;
+    min-width: 200px;
+    background: #34495e;
+    padding: 10px;
+    border-radius: 3px;
 }
 
 .achievement {
@@ -143,15 +249,20 @@ nav a:hover {
     border-radius: 5px;
     text-align: center;
     color: #fff;
+    font-size: 1.1em;
+    border: 2px solid #f1c40f;
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.5);
 }
 
 .briefing {
     background: #2c3e50;
     padding: 15px;
-    margin: 10px 20px;
+    margin: 10px 0;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    border: 2px solid #3498db;
 }
 
 .briefing .close {
@@ -163,6 +274,13 @@ nav a:hover {
     cursor: pointer;
 }
 
+.contribution-form {
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 5px;
+    margin: 10px;
+}
+
 .contribution-form button {
     background: #3498db;
     border: none;
@@ -171,6 +289,8 @@ nav a:hover {
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
 }
 
 .contribution-form button:hover {
@@ -184,14 +304,33 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
 }
 
 footer a {
     color: #ecf0f1;
     margin: 0 10px;
     text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
 }
 
 footer a:hover {
     color: #3498db;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-card {
+        grid-template-columns: 1fr;
+    }
+    .ranking-card, .collaboration-card, .analytics-card div {
+        margin: 10px 0;
+    }
+    nav a {
+        margin: 0 5px;
+    }
+    .comparison-chart canvas {
+        height: 150px !important;
+    }
 }
