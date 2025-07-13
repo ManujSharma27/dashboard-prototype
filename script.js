@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const qsChart = new Chart(document.getElementById('qs-chart'), {
         type: 'line',
         data: {
-            labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
             datasets: [{
                 label: 'QS Rank',
-                data: [360, 350, 340, 339, 335],
+                data: [405, 400, 383, 369, 357, 347, 342, 339],
                 borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 10, min: 300, max: 410 } } },
             plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
@@ -63,10 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const nirfChart = new Chart(document.getElementById('nirf-chart'), {
         type: 'line',
         data: {
-            labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
             datasets: [{
                 label: 'NIRF Rank',
-                data: [9, 8, 7, 7, 6],
+                data: [9, 8, 8, 7, 7, 7, 7, 7],
                 borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 1, min: 6, max: 10 } } },
             plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
@@ -85,10 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const indiaChart = new Chart(document.getElementById('india-chart'), {
         type: 'line',
         data: {
-            labels: ['Jan', 'Mar', 'May', 'Jul', 'Sep'],
+            labels: ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'],
             datasets: [{
-                label: 'India Rank',
-                data: [8, 7, 7, 7, 6],
+                label: 'India Today Rank',
+                data: [8, 8, 7, 7, 7, 7, 7, 7],
                 borderColor: '#e57373',
                 fill: false,
                 tension: 0.2,
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            scales: { y: { beginAtZero: false, ticks: { color: '#b3cde0' } } },
+            scales: { y: { beginAtZero: false, reverse: true, ticks: { color: '#b3cde0', stepSize: 1, min: 6, max: 10 } } },
             plugins: { legend: { labels: { color: '#b3cde0' } } }
         }
     });
@@ -121,10 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ranks.forEach(r => {
             document.getElementById(r.id).textContent = r.value;
-            document.getElementById(r.id + '-trend').textContent = `↑ ${r.trend}`;
-            qsChart.data.datasets[0].data = [360, 350, 340, r.value, 335];
-            nirfChart.data.datasets[0].data = [9, 8, 7, r.value, 6];
-            indiaChart.data.datasets[0].data = [8, 7, 7, r.value, 6];
+            document.getElementById(r.id + '-trend').textContent = `↑ ${r.trend > 0 ? r.trend : 0}`;
+            qsChart.data.datasets[0].data = [405, 400, 383, 369, 357, 347, 342, r.value];
+            nirfChart.data.datasets[0].data = [9, 8, 8, 7, 7, 7, 7, r.value];
+            indiaChart.data.datasets[0].data = [8, 8, 7, 7, 7, 7, 7, r.value];
             qsChart.update();
             nirfChart.update();
             indiaChart.update();
